@@ -4,5 +4,5 @@ import com.bboykot.weather.domain.models.CurrentForecast
 
 interface ForecastRepository {
 
-    fun loadCurrentForecastForCity(city: String): CurrentForecast
+    suspend fun loadCurrentForecastForCity(city: String): CurrentForecast
 }

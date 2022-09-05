@@ -6,6 +6,7 @@ import com.bboykot.weather.domain.repository.ForecastRepository
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import javax.inject.Singleton
 
@@ -14,10 +15,9 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideWeatherApiService(): WeatherApiService{
+    fun provideWeatherApiService(): WeatherApiService {
         return Retrofit.Builder()
-//    .addConverterFactory(GsonConverterFactory.create())
-            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL)
             .build()
             .create(WeatherApiService::class.java)
@@ -25,11 +25,11 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideForecastRepository(): ForecastRepository{
+    fun provideForecastRepository(): ForecastRepository {
         return ForecastRepositoryImpl()
     }
 
-    companion object{
+    companion object {
         private const val BASE_URL = "https://api.openweathermap.org/data/2.5/"
     }
 }

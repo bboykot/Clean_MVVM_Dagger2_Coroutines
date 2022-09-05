@@ -17,7 +17,7 @@ class SearchViewModel(
     fun startSearch(city: String){
         viewModelScope.launch {
             val result = weatherApiService.getCurrentForecast(city)
-            _searchResult.value = result
+            _searchResult.value = result.toString()
         }
     }
 }

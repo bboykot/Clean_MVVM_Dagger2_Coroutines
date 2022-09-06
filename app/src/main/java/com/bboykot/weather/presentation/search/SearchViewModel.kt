@@ -4,20 +4,35 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bboykot.weather.data.remote.WeatherApiService
+import com.bboykot.weather.domain.models.CurrentForecast
+import com.bboykot.weather.domain.usecases.GetCurrentForecastUseCase
 import kotlinx.coroutines.launch
 
 class SearchViewModel(
-    private val weatherApiService: WeatherApiService
+    private val getCurrentForecastUseCase: GetCurrentForecastUseCase
 ): ViewModel() {
 
-    private val _searchResult = MutableLiveData<String>()
-    val searchResult: LiveData<String> get() = _searchResult
+    private val _searchResult = MutableLiveData<CurrentForecast>()
+    val searchResult: LiveData<CurrentForecast> get() = _searchResult
+
+    private val requestErrorPrivate = MutableLiveData<String>()
+    val requestError get() = requestErrorPrivate
+
+    private val progressVisibilityPrivate = MutableLiveData<Boolean>()
+    val progressVisibility get() = progressVisibilityPrivate
 
     fun startSearch(city: String){
+        progressVisibilityPrivate.value = true
+
         viewModelScope.launch {
-            val result = weatherApiService.getCurrentForecast(city)
-            _searchResult.value = result.toString()
+            try {
+                val result = getCurrentForecastUseCase.getCurrentForecastForCity(city)
+                _searchResult.value = result
+            }
+            catch (error: Exception) {
+                requestErrorPrivate.value = error.toString()
+            }
+            progressVisibilityPrivate.value = false
         }
     }
 }

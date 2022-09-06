@@ -25,8 +25,8 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideForecastRepository(): ForecastRepository {
-        return ForecastRepositoryImpl()
+    fun provideForecastRepository(weatherApiService: WeatherApiService): ForecastRepository {
+        return ForecastRepositoryImpl(weatherApiService)
     }
 
     companion object {

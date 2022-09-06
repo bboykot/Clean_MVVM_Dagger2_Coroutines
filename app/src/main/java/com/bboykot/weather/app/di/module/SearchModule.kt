@@ -3,6 +3,7 @@ package com.bboykot.weather.app.di.module
 import androidx.lifecycle.ViewModel
 import com.bboykot.weather.app.di.component.ViewModelKey
 import com.bboykot.weather.data.remote.WeatherApiService
+import com.bboykot.weather.domain.usecases.GetCurrentForecastUseCase
 import com.bboykot.weather.presentation.search.SearchViewModel
 import dagger.Module
 import dagger.Provides
@@ -14,7 +15,7 @@ class SearchModule {
     @IntoMap
     @ViewModelKey(SearchViewModel::class)
     @Provides
-    fun provideSearchViewModel(weatherApiService: WeatherApiService):ViewModel{
-        return SearchViewModel(weatherApiService)
+    fun provideSearchViewModel(getCurrentForecastUseCase: GetCurrentForecastUseCase):ViewModel{
+        return SearchViewModel(getCurrentForecastUseCase)
     }
 }

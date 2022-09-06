@@ -2,8 +2,9 @@ package com.bboykot.weather.presentation.search
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -28,17 +29,24 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.tvTitle.text = "123"
-
-
-        Log.i("XXX", "$viewModel ")
 
         binding.btnSearch.setOnClickListener {
             viewModel.startSearch(binding.etSearch.text.toString())
         }
 
         viewModel.searchResult.observe(viewLifecycleOwner, Observer { result ->
-            binding.tvSearchResult.text = result
+            binding.tvCity.text = result.city
+            binding.tvTemp.text = result.temperature.toString()
+            binding.tvWind.text = result.wind.toString()
+            binding.tvDescription.text = result.description
+        })
+
+        viewModel.requestError.observe(viewLifecycleOwner, Observer { error ->
+            Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
+        })
+
+        viewModel.progressVisibility.observe(viewLifecycleOwner, Observer { visibility ->
+            binding.progressBar.isVisible = visibility
         })
     }
 }

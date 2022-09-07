@@ -1,5 +1,6 @@
 package com.bboykot.weather.app.di.module
 
+import com.bboykot.weather.data.db.CitiesDatabase
 import com.bboykot.weather.data.remote.WeatherApiService
 import com.bboykot.weather.data.repository.ForecastRepositoryImpl
 import com.bboykot.weather.domain.repository.ForecastRepository
@@ -25,8 +26,8 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideForecastRepository(weatherApiService: WeatherApiService): ForecastRepository {
-        return ForecastRepositoryImpl(weatherApiService)
+    fun provideForecastRepository(weatherApiService: WeatherApiService, citiesDatabase: CitiesDatabase): ForecastRepository {
+        return ForecastRepositoryImpl(weatherApiService, citiesDatabase)
     }
 
     companion object {

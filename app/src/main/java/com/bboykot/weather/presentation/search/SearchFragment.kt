@@ -33,6 +33,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         binding.btnSearch.setOnClickListener { viewModel.startSearch(binding.etSearch.text.toString()) }
 
         binding.btnSave.setOnClickListener { viewModel.saveCity() }
+        binding.btnSaveAsDefault.setOnClickListener { viewModel.saveCityAsDefault() }
 
         viewModel.searchResult.observe(viewLifecycleOwner, Observer { result ->
             binding.tvCity.text = result.city

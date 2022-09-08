@@ -39,6 +39,10 @@ class SearchViewModel(
     }
 
     fun saveCity(){
-        viewModelScope.launch { saveCityUseCase.saveCity(_searchResult.value) }
+        viewModelScope.launch { saveCityUseCase.saveCity(_searchResult.value, false) }
+    }
+
+    fun saveCityAsDefault(){
+        viewModelScope.launch { saveCityUseCase.saveCity(_searchResult.value, true) }
     }
 }

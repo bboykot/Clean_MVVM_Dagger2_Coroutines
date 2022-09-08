@@ -16,9 +16,9 @@ class ForecastRepositoryImpl(
         return CurrentForecast(forecast.id, forecast.city, forecast.main.temperature, forecast.wind.speed, forecast.weather[0].description)
     }
 
-    override suspend fun saveCityInDatabase(currentForecast: CurrentForecast?) {
+    override suspend fun saveCityInDatabase(currentForecast: CurrentForecast?, isDefault: Boolean) {
         currentForecast?.let{
-            citiesDatabase.getCitiesDao().insertCity(CitiesEntity(it.id, it.city, false))
+            citiesDatabase.getCitiesDao().insertCity(CitiesEntity(it.id, it.city, isDefault))
         }
     }
 }

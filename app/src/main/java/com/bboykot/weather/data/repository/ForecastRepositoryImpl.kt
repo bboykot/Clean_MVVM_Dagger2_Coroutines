@@ -21,4 +21,8 @@ class ForecastRepositoryImpl(
             citiesDatabase.getCitiesDao().insertCity(CitiesEntity(it.id, it.city, isDefault))
         }
     }
+
+    override suspend fun removeCurrentDefaultFlag() {
+        citiesDatabase.getCitiesDao().removeCurrentDefaultFlag()
+    }
 }

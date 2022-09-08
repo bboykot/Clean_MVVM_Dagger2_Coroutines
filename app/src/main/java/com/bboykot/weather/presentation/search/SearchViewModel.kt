@@ -6,12 +6,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bboykot.weather.domain.models.CurrentForecast
 import com.bboykot.weather.domain.usecases.GetCurrentForecastUseCase
+import com.bboykot.weather.domain.usecases.RemoveCurrentDefaultFlagUseCase
 import com.bboykot.weather.domain.usecases.SaveCityUseCase
 import kotlinx.coroutines.launch
 
 class SearchViewModel(
     private val getCurrentForecastUseCase: GetCurrentForecastUseCase,
     private val saveCityUseCase: SaveCityUseCase,
+    private val removeCurrentDefaultFlagUseCase: RemoveCurrentDefaultFlagUseCase
 ): ViewModel() {
 
     private val _searchResult = MutableLiveData<CurrentForecast>()
@@ -43,6 +45,9 @@ class SearchViewModel(
     }
 
     fun saveCityAsDefault(){
-        viewModelScope.launch { saveCityUseCase.saveCity(_searchResult.value, true) }
+        viewModelScope.launch {
+            removeCurrentDefaultFlagUseCase.removeCurrentDefaultFlag()
+            saveCityUseCase.saveCity(_searchResult.value, true)
+        }
     }
 }

@@ -7,4 +7,6 @@ interface ForecastRepository {
     suspend fun loadCurrentForecastForCity(city: String): CurrentForecast
 
     suspend fun saveCityInDatabase(currentForecast: CurrentForecast?, isDefault: Boolean)
+
+    suspend fun removeCurrentDefaultFlag()
 }

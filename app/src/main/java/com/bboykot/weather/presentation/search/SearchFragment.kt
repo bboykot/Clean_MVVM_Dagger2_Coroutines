@@ -3,6 +3,7 @@ package com.bboykot.weather.presentation.search
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -30,7 +31,12 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        binding.btnSearch.setOnClickListener { viewModel.startSearch(binding.etSearch.text.toString()) }
+        binding.btnSearch.setOnClickListener {
+            val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
+
+            viewModel.startSearch(binding.etSearch.text.toString())
+        }
 
         binding.btnSave.setOnClickListener { viewModel.saveCity() }
         binding.btnSaveAsDefault.setOnClickListener { viewModel.saveCityAsDefault() }

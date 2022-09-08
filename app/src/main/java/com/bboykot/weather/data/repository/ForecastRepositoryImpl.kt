@@ -1,6 +1,7 @@
 package com.bboykot.weather.data.repository
 
 import com.bboykot.weather.data.db.CitiesDatabase
+import com.bboykot.weather.data.db.CitiesEntity
 import com.bboykot.weather.data.remote.WeatherApiService
 import com.bboykot.weather.domain.models.CurrentForecast
 import com.bboykot.weather.domain.repository.ForecastRepository
@@ -12,6 +13,12 @@ class ForecastRepositoryImpl(
 
     override suspend fun loadCurrentForecastForCity(city: String): CurrentForecast {
         val forecast = weatherApiService.getCurrentForecast(city)
-        return CurrentForecast(forecast.city, forecast.main.temperature, forecast.wind.speed, forecast.weather[0].description)
+        return CurrentForecast(forecast.id, forecast.city, forecast.main.temperature, forecast.wind.speed, forecast.weather[0].description)
+    }
+
+    override suspend fun saveCityInDatabase(currentForecast: CurrentForecast?) {
+        currentForecast?.let{
+            citiesDatabase.getCitiesDao().insertCity(CitiesEntity(it.id, it.city, false))
+        }
     }
 }

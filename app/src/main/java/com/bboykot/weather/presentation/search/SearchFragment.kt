@@ -30,9 +30,9 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        binding.btnSearch.setOnClickListener {
-            viewModel.startSearch(binding.etSearch.text.toString())
-        }
+        binding.btnSearch.setOnClickListener { viewModel.startSearch(binding.etSearch.text.toString()) }
+
+        binding.btnSave.setOnClickListener { viewModel.saveCity() }
 
         viewModel.searchResult.observe(viewLifecycleOwner, Observer { result ->
             binding.tvCity.text = result.city

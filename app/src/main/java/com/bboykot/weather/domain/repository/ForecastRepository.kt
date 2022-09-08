@@ -5,4 +5,6 @@ import com.bboykot.weather.domain.models.CurrentForecast
 interface ForecastRepository {
 
     suspend fun loadCurrentForecastForCity(city: String): CurrentForecast
+
+    suspend fun saveCityInDatabase(currentForecast: CurrentForecast?)
 }

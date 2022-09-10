@@ -7,6 +7,7 @@ import com.bboykot.weather.R
 import com.bboykot.weather.app.App
 import com.bboykot.weather.app.di.component.SearchComponent
 import com.bboykot.weather.databinding.ActivityMainBinding
+import com.bboykot.weather.presentation.home.HomeFragment
 import com.bboykot.weather.presentation.search.SearchFragment
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
@@ -19,9 +20,28 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        binding.bottomNav.setOnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.navigation_home -> HomeFragment() to HOME_TAG
+                R.id.navigation_search -> SearchFragment() to SEARCH_TAG
+                else -> null
+            }?.also {
+                val fragment = supportFragmentManager.findFragmentByTag(it.second)
+                if (fragment != null) {
+                    supportFragmentManager.beginTransaction().addToBackStack(it.second)
+                        .replace(R.id.main_container,fragment, it.second)
+                        .setReorderingAllowed(true).commit()
+                } else
+                    supportFragmentManager.beginTransaction().addToBackStack(it.second)
+                        .replace(R.id.main_container, it.first, it.second)
+                        .setReorderingAllowed(true).commit()
+            }
+            true
+        }
+    }
 
-        binding.tvTest.text = "123"
-        if (savedInstanceState == null)
-        supportFragmentManager.beginTransaction().addToBackStack(null).replace(R.id.main_container, SearchFragment(), null).commit()
+    companion object{
+        private const val HOME_TAG = "home_tag"
+        private const val SEARCH_TAG = "search_tag"
     }
 }

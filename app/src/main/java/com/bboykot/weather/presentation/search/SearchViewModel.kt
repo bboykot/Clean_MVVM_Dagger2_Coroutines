@@ -1,10 +1,10 @@
 package com.bboykot.weather.presentation.search
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bboykot.weather.domain.models.CurrentForecast
+import com.bboykot.weather.domain.models.Resource
 import com.bboykot.weather.domain.usecases.GetCurrentForecastUseCase
 import com.bboykot.weather.domain.usecases.RemoveCurrentDefaultFlagUseCase
 import com.bboykot.weather.domain.usecases.SaveCityUseCase
@@ -16,11 +16,8 @@ class SearchViewModel(
     private val removeCurrentDefaultFlagUseCase: RemoveCurrentDefaultFlagUseCase
 ): ViewModel() {
 
-    private val _searchResult = MutableLiveData<CurrentForecast>()
-    val searchResult: LiveData<CurrentForecast> get() = _searchResult
-
-    private val requestErrorPrivate = MutableLiveData<String>()
-    val requestError get() = requestErrorPrivate
+    private val _result = MutableLiveData<Resource<CurrentForecast>>()
+    val result get() = _result
 
     private val progressVisibilityPrivate = MutableLiveData<Boolean>()
     val progressVisibility get() = progressVisibilityPrivate
@@ -31,23 +28,28 @@ class SearchViewModel(
         viewModelScope.launch {
             try {
                 val result = getCurrentForecastUseCase.getCurrentForecastForCity(city)
-                _searchResult.value = result
+                _result.value = Resource.Success(result)
             }
             catch (error: Exception) {
-                requestErrorPrivate.value = error.toString()
+                _result.value = Resource.Failure(error.toString())
             }
             progressVisibilityPrivate.value = false
         }
     }
 
     fun saveCity(){
-        viewModelScope.launch { saveCityUseCase.saveCity(_searchResult.value, false) }
+        val forecast = _result.value
+        if (forecast is Resource.Success<CurrentForecast>)
+        viewModelScope.launch { saveCityUseCase.saveCity( forecast.data, false) }
     }
 
     fun saveCityAsDefault(){
-        viewModelScope.launch {
-            removeCurrentDefaultFlagUseCase.removeCurrentDefaultFlag()
-            saveCityUseCase.saveCity(_searchResult.value, true)
+        val forecast = _result.value
+        if (forecast is Resource.Success<CurrentForecast>) {
+            viewModelScope.launch {
+                removeCurrentDefaultFlagUseCase.removeCurrentDefaultFlag()
+                saveCityUseCase.saveCity(forecast.data, true)
+            }
         }
     }
 }

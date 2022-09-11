@@ -12,6 +12,8 @@ import androidx.lifecycle.Observer
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bboykot.weather.R
 import com.bboykot.weather.databinding.FragmentSearchBinding
+import com.bboykot.weather.domain.models.CurrentForecast
+import com.bboykot.weather.domain.models.Resource
 import com.bboykot.weather.presentation.common.MainActivity
 import com.bboykot.weather.presentation.common.ViewModelFactory
 import javax.inject.Inject
@@ -41,15 +43,16 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         binding.btnSave.setOnClickListener { viewModel.saveCity() }
         binding.btnSaveAsDefault.setOnClickListener { viewModel.saveCityAsDefault() }
 
-        viewModel.searchResult.observe(viewLifecycleOwner, Observer { result ->
-            binding.tvCity.text = result.city
-            binding.tvTemp.text = result.temperature.toString()
-            binding.tvWind.text = result.wind.toString()
-            binding.tvDescription.text = result.description
-        })
-
-        viewModel.requestError.observe(viewLifecycleOwner, Observer { error ->
-            Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
+        viewModel.result.observe(viewLifecycleOwner, Observer { result ->
+            when (result) {
+                is Resource.Success<CurrentForecast> -> {
+                    binding.tvCity.text = result.data.city
+                    binding.tvTemp.text = result.data.temperature.toString()
+                    binding.tvWind.text = result.data.wind.toString()
+                    binding.tvDescription.text = result.data.description
+                }
+                is Resource.Failure -> Toast.makeText(requireContext(), result.message, Toast.LENGTH_LONG).show()
+            }
         })
 
         viewModel.progressVisibility.observe(viewLifecycleOwner, Observer { visibility ->

@@ -21,4 +21,5 @@ interface AppComponent {
     }
 
     fun getSearchComponent(): SearchComponent
+    fun getHomeComponent(): HomeComponent
 }

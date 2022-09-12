@@ -17,7 +17,15 @@ class SearchModule {
     @IntoMap
     @ViewModelKey(SearchViewModel::class)
     @Provides
-    fun provideSearchViewModel(getCurrentForecastUseCase: GetCurrentForecastUseCase, saveCityUseCase: SaveCityUseCase, removeCurrentDefaultFlagUseCase: RemoveCurrentDefaultFlagUseCase):ViewModel{
-        return SearchViewModel(getCurrentForecastUseCase, saveCityUseCase, removeCurrentDefaultFlagUseCase)
+    fun provideSearchViewModel(
+        getCurrentForecastUseCase: GetCurrentForecastUseCase,
+        saveCityUseCase: SaveCityUseCase,
+        removeCurrentDefaultFlagUseCase: RemoveCurrentDefaultFlagUseCase
+    ): ViewModel {
+        return SearchViewModel(
+            getCurrentForecastUseCase,
+            saveCityUseCase,
+            removeCurrentDefaultFlagUseCase
+        )
     }
 }

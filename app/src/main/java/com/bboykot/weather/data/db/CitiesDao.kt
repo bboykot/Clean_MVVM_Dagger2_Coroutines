@@ -11,6 +11,9 @@ interface CitiesDao {
     @Query("SELECT * FROM CITIES")
     fun getCitiesList(): List<CitiesEntity>
 
+    @Query("SELECT city FROM cities WHERE isDefault = 1")
+    suspend fun getDefaultCity(): String?
+
     @Query("UPDATE cities SET isDefault = 0 WHERE isDefault = 1 ")
     suspend fun removeCurrentDefaultFlag()
 

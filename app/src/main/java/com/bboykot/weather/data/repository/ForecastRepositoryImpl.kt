@@ -25,4 +25,8 @@ class ForecastRepositoryImpl(
     override suspend fun removeCurrentDefaultFlag() {
         citiesDatabase.getCitiesDao().removeCurrentDefaultFlag()
     }
+
+    override suspend fun getDefaultCityFromDatabase(): String? {
+        return citiesDatabase.getCitiesDao().getDefaultCity()
+    }
 }

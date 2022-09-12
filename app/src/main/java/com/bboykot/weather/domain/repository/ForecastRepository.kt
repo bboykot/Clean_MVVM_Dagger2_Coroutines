@@ -9,4 +9,6 @@ interface ForecastRepository {
     suspend fun saveCityInDatabase(currentForecast: CurrentForecast?, isDefault: Boolean)
 
     suspend fun removeCurrentDefaultFlag()
+
+    suspend fun getDefaultCityFromDatabase(): String?
 }

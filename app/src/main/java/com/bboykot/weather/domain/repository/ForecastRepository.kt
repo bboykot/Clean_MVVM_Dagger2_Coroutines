@@ -1,5 +1,6 @@
 package com.bboykot.weather.domain.repository
 
+import androidx.lifecycle.LiveData
 import com.bboykot.weather.domain.models.CurrentForecast
 
 interface ForecastRepository {
@@ -10,5 +11,5 @@ interface ForecastRepository {
 
     suspend fun removeCurrentDefaultFlag()
 
-    suspend fun getDefaultCityFromDatabase(): String?
+    fun getDefaultCityFromDatabase(): LiveData<String?>
 }

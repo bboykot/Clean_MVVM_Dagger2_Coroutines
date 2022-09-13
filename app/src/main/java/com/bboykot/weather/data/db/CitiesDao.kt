@@ -1,5 +1,6 @@
 package com.bboykot.weather.data.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -12,7 +13,7 @@ interface CitiesDao {
     fun getCitiesList(): List<CitiesEntity>
 
     @Query("SELECT city FROM cities WHERE isDefault = 1")
-    suspend fun getDefaultCity(): String?
+    fun getDefaultCity(): LiveData<String?>
 
     @Query("UPDATE cities SET isDefault = 0 WHERE isDefault = 1 ")
     suspend fun removeCurrentDefaultFlag()

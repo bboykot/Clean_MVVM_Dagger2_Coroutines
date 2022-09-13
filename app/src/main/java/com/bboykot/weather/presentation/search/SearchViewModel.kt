@@ -1,5 +1,6 @@
 package com.bboykot.weather.presentation.search
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,10 +18,10 @@ class SearchViewModel(
 ): ViewModel() {
 
     private val _result = MutableLiveData<Resource<CurrentForecast>>()
-    val result get() = _result
+    val result: LiveData<Resource<CurrentForecast>> get() = _result
 
     private val progressVisibilityPrivate = MutableLiveData<Boolean>()
-    val progressVisibility get() = progressVisibilityPrivate
+    val progressVisibility: LiveData<Boolean> get() = progressVisibilityPrivate
 
     fun startSearch(city: String){
         progressVisibilityPrivate.value = true

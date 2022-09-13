@@ -1,18 +1,15 @@
 package com.bboykot.weather.presentation.home
 
 import android.content.Context
-import android.os.Build.VERSION_CODES.P
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bboykot.weather.R
-import com.bboykot.weather.app.App
 import com.bboykot.weather.databinding.FragmentHomeBinding
 import com.bboykot.weather.domain.models.CurrentForecast
 import com.bboykot.weather.domain.models.Resource
@@ -33,6 +30,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Log.i("XXX", "onViewCreated: real? ")
+
+        viewModel.defaultCity.observe(viewLifecycleOwner, Observer {
+            viewModel.loadForecast()
+        })
 
         viewModel.result.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
@@ -54,8 +56,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
         })
 
-        viewModel.progressVisibility.observe(viewLifecycleOwner, {
+        viewModel.progressVisibility.observe(viewLifecycleOwner) {
             binding.progressBar.isVisible = it
-        })
+        }
     }
 }

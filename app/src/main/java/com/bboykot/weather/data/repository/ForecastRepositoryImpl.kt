@@ -1,5 +1,6 @@
 package com.bboykot.weather.data.repository
 
+import androidx.lifecycle.LiveData
 import com.bboykot.weather.data.db.CitiesDatabase
 import com.bboykot.weather.data.db.CitiesEntity
 import com.bboykot.weather.data.remote.WeatherApiService
@@ -26,7 +27,7 @@ class ForecastRepositoryImpl(
         citiesDatabase.getCitiesDao().removeCurrentDefaultFlag()
     }
 
-    override suspend fun getDefaultCityFromDatabase(): String? {
+    override fun getDefaultCityFromDatabase(): LiveData<String?> {
         return citiesDatabase.getCitiesDao().getDefaultCity()
     }
 }

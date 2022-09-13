@@ -1,6 +1,6 @@
 package com.bboykot.weather.presentation.home
 
-import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,32 +16,29 @@ class HomeViewModel(
 ) : ViewModel() {
 
     private val _result = MutableLiveData<Resource<CurrentForecast>>()
-    val result get() = _result
+    val result: LiveData<Resource<CurrentForecast>> get() = _result
 
     private val _progressVisibility = MutableLiveData<Boolean>()
-    val progressVisibility get() = _progressVisibility
+    val progressVisibility: LiveData<Boolean> get() = _progressVisibility
 
-    init {
-        loadForecast()
-    }
+    val defaultCity: LiveData<String?> = getDefaultCityUseCase.fetch()
 
-    private fun loadForecast() {
+    fun loadForecast() {
+        _result.value = Resource.Failure("")
         viewModelScope.launch {
             _progressVisibility.value = true
 
-            val defaultCity = getDefaultCityUseCase.fetch()
+            val city:String? = defaultCity.value
 
             try {
-                if (defaultCity != null) {
-                    val forecast = getCurrentForecastUseCase.getCurrentForecastForCity(defaultCity)
+                if (city != null) {
+                    val forecast = getCurrentForecastUseCase.getCurrentForecastForCity(city)
                     _result.value = Resource.Success(forecast)
                 } else throw IllegalArgumentException()
-
             } catch (error: java.lang.IllegalArgumentException) {
-                _result.value = Resource.Failure("Default city is not chosen")
-
+                _result.value =
+                    Resource.Failure("Default city is not chosen. Join Search screen, find your city and set him as default")
             } catch (error: Exception) {
-                Log.i("XXX", "loadForecast: ")
                 _result.value = Resource.Failure(error.toString())
             }
             _progressVisibility.value = false

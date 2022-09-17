@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -46,17 +45,28 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         viewModel.result.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Resource.Success<CurrentForecast> -> {
+                    binding.progressBar.isVisible = false
+                    binding.tvError.isVisible = false
+                    binding.groupData.isVisible = true
+
                     binding.tvCity.text = result.data.city
                     binding.tvTemp.text = result.data.temperature.toString()
                     binding.tvWind.text = result.data.wind.toString()
                     binding.tvDescription.text = result.data.description
                 }
-                is Resource.Failure -> Toast.makeText(requireContext(), result.message, Toast.LENGTH_LONG).show()
-            }
-        })
+                is Resource.Failure -> {
+                    binding.tvError.isVisible = true
+                    binding.progressBar.isVisible = false
+                    binding.groupData.isVisible = false
 
-        viewModel.progressVisibility.observe(viewLifecycleOwner, Observer { visibility ->
-            binding.progressBar.isVisible = visibility
+                    binding.tvError.text = result.message
+                }
+                is Resource.Loading -> {
+                    binding.progressBar.isVisible = true
+                    binding.tvError.isVisible = false
+                    binding.groupData.isVisible = false
+                }
+            }
         })
     }
 }

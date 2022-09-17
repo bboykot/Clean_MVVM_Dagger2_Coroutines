@@ -41,6 +41,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 is Resource.Success<CurrentForecast> -> {
                     binding.groupData.isVisible = true
                     binding.tvError.isVisible = false
+                    binding.progressBar.isVisible = false
 
                     binding.tvCity.text = result.data.city
                     binding.tvTemp.text = result.data.temperature.toString()
@@ -50,14 +51,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 is Resource.Failure -> {
                     binding.groupData.isVisible = false
                     binding.tvError.isVisible = true
+                    binding.progressBar.isVisible = false
 
                     binding.tvError.text = result.message
                 }
+                is Resource.Loading -> {
+                    binding.groupData.isVisible = false
+                    binding.tvError.isVisible = false
+                    binding.progressBar.isVisible = true
+                }
             }
         })
-
-        viewModel.progressVisibility.observe(viewLifecycleOwner) {
-            binding.progressBar.isVisible = it
-        }
     }
 }

@@ -6,6 +6,7 @@ import com.bboykot.weather.data.remote.WeatherApiService
 import com.bboykot.weather.domain.usecases.GetCurrentForecastUseCase
 import com.bboykot.weather.domain.usecases.RemoveCurrentDefaultFlagUseCase
 import com.bboykot.weather.domain.usecases.SaveCityUseCase
+import com.bboykot.weather.presentation.common.CustomExceptionHandler
 import com.bboykot.weather.presentation.search.SearchViewModel
 import dagger.Module
 import dagger.Provides
@@ -20,12 +21,14 @@ class SearchModule {
     fun provideSearchViewModel(
         getCurrentForecastUseCase: GetCurrentForecastUseCase,
         saveCityUseCase: SaveCityUseCase,
-        removeCurrentDefaultFlagUseCase: RemoveCurrentDefaultFlagUseCase
+        removeCurrentDefaultFlagUseCase: RemoveCurrentDefaultFlagUseCase,
+        customExceptionHandler: CustomExceptionHandler,
     ): ViewModel {
         return SearchViewModel(
             getCurrentForecastUseCase,
             saveCityUseCase,
-            removeCurrentDefaultFlagUseCase
+            removeCurrentDefaultFlagUseCase,
+            customExceptionHandler,
         )
     }
 }

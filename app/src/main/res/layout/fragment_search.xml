@@ -124,8 +124,23 @@
         android:text="Save as default city"
         app:layout_constraintBottom_toBottomOf="@+id/btn_save"
         app:layout_constraintStart_toEndOf="@+id/btn_save"
-        app:layout_constraintTop_toTopOf="@+id/btn_save"
-        />
+        app:layout_constraintTop_toTopOf="@+id/btn_save" />
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="tv_temp,tv_wind,tv_city,tv_description,btn_save_as_default,btn_save,tv_description_title,tv_wind_title,tv_temp_title" />
+
+
+    <TextView
+        android:id="@+id/tv_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

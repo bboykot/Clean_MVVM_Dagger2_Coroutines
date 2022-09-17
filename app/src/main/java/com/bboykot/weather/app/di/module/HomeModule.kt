@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.bboykot.weather.app.di.component.ViewModelKey
 import com.bboykot.weather.domain.usecases.GetCurrentForecastUseCase
 import com.bboykot.weather.domain.usecases.GetDefaultCityUseCase
+import com.bboykot.weather.presentation.common.CustomExceptionHandler
 import com.bboykot.weather.presentation.home.HomeViewModel
 import dagger.Module
 import dagger.Provides
@@ -17,8 +18,9 @@ class HomeModule {
     @Provides
     fun provideHomeViewModel(
         getCurrentForecastUseCase: GetCurrentForecastUseCase,
-        getDefaultCityUseCase: GetDefaultCityUseCase
+        getDefaultCityUseCase: GetDefaultCityUseCase,
+        customExceptionHandler: CustomExceptionHandler,
     ): ViewModel {
-       return HomeViewModel(getCurrentForecastUseCase, getDefaultCityUseCase)
+       return HomeViewModel(getCurrentForecastUseCase, getDefaultCityUseCase, customExceptionHandler)
     }
 }

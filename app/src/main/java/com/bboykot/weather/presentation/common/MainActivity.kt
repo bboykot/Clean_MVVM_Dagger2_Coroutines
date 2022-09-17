@@ -8,6 +8,7 @@ import com.bboykot.weather.app.App
 import com.bboykot.weather.app.di.component.HomeComponent
 import com.bboykot.weather.app.di.component.SearchComponent
 import com.bboykot.weather.databinding.ActivityMainBinding
+import com.bboykot.weather.presentation.cities.CitiesFragment
 import com.bboykot.weather.presentation.home.HomeFragment
 import com.bboykot.weather.presentation.search.SearchFragment
 
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             when (menuItem.itemId) {
                 R.id.navigation_home -> HomeFragment() to HOME_TAG
                 R.id.navigation_search -> SearchFragment() to SEARCH_TAG
+                R.id.navigation_cities -> CitiesFragment() to CITIES_TAG
                 else -> null
             }?.also {
                 val fragment = supportFragmentManager.findFragmentByTag(it.second)
@@ -46,5 +48,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     companion object{
         private const val HOME_TAG = "home_tag"
         private const val SEARCH_TAG = "search_tag"
+        private const val CITIES_TAG = "cities_tag"
     }
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bboykot.weather.R
 import com.bboykot.weather.app.App
+import com.bboykot.weather.app.di.component.CitiesComponent
 import com.bboykot.weather.app.di.component.HomeComponent
 import com.bboykot.weather.app.di.component.SearchComponent
 import com.bboykot.weather.databinding.ActivityMainBinding
@@ -17,10 +18,14 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     lateinit var searchSubcomponent: SearchComponent
     lateinit var homeComponent: HomeComponent
+    lateinit var citiesComponent: CitiesComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         searchSubcomponent = (application as App).appComponent.getSearchComponent()
         homeComponent = (application as App).appComponent.getHomeComponent()
+        citiesComponent = (application as App).appComponent.getCitiesComponent()
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 

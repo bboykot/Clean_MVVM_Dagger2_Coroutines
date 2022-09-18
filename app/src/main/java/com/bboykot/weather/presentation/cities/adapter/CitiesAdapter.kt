@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bboykot.weather.databinding.ItemCitiesBinding
 import com.bboykot.weather.domain.models.CurrentForecast
 
-class CitiesAdapter(private val context: Context, private val citiesForecasts: List<CurrentForecast>): RecyclerView.Adapter<CitiesViewHolder>() {
+class CitiesAdapter(private val context: Context, private val citiesForecasts: List<CurrentForecast>,private val listener: Listener): RecyclerView.Adapter<CitiesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CitiesViewHolder {
         val binding = ItemCitiesBinding.inflate(LayoutInflater.from(context), parent, false)
-        return CitiesViewHolder(binding)
+        return CitiesViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: CitiesViewHolder, position: Int) {
@@ -22,3 +22,6 @@ class CitiesAdapter(private val context: Context, private val citiesForecasts: L
     override fun getItemCount() = citiesForecasts.size
 }
 
+interface Listener{
+    fun onClick(forecast: CurrentForecast)
+}

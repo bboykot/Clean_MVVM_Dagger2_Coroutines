@@ -9,8 +9,8 @@ import androidx.room.Query
 @Dao
 interface CitiesDao {
 
-    @Query("SELECT * FROM CITIES")
-    fun getCitiesList(): List<CitiesEntity>
+    @Query("SELECT city FROM CITIES")
+    fun getCitiesList(): LiveData<List<String>>
 
     @Query("SELECT city FROM cities WHERE isDefault = 1")
     fun getDefaultCity(): LiveData<String?>

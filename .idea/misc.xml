@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Demo/weather/app/src/main/res/drawable/bg_item.xml" value="0.3125" />
         <entry key="..\:/Demo/weather/app/src/main/res/layout/activity_main.xml" value="0.40520833333333334" />
         <entry key="..\:/Demo/weather/app/src/main/res/layout/fragment_cities.xml" value="0.4041666666666667" />
         <entry key="..\:/Demo/weather/app/src/main/res/layout/fragment_home.xml" value="0.40520833333333334" />

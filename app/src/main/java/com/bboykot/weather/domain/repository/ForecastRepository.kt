@@ -12,4 +12,6 @@ interface ForecastRepository {
     suspend fun removeCurrentDefaultFlag()
 
     fun getDefaultCityFromDatabase(): LiveData<String?>
+
+    fun getCitiesFromDb(): LiveData<List<String>>
 }

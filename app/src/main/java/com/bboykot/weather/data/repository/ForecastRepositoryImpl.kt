@@ -30,4 +30,8 @@ class ForecastRepositoryImpl(
     override fun getDefaultCityFromDatabase(): LiveData<String?> {
         return citiesDatabase.getCitiesDao().getDefaultCity()
     }
+
+    override fun getCitiesFromDb(): LiveData<List<String>> {
+        return citiesDatabase.getCitiesDao().getCitiesList()
+    }
 }

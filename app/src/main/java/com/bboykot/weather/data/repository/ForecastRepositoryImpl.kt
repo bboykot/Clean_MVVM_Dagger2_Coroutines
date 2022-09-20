@@ -35,7 +35,7 @@ class ForecastRepositoryImpl(
         return citiesDatabase.getCitiesDao().getCitiesList()
     }
 
-    override suspend fun deleteCity(city: String) {
-        citiesDatabase.getCitiesDao().deleteCity(city)
+    override suspend fun deleteCity(city: CurrentForecast) {
+        citiesDatabase.getCitiesDao().deleteCity(CitiesEntity(city.id, city.city, false))
     }
 }

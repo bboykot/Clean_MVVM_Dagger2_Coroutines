@@ -15,10 +15,12 @@ interface CitiesDao {
     @Query("UPDATE cities SET isDefault = 0 WHERE isDefault = 1 ")
     suspend fun removeCurrentDefaultFlag()
 
-    @Query("DELETE FROM cities WHERE city = :city")
-    suspend fun deleteCity(city: String)
+//    @Query("DELETE FROM cities WHERE city = :city")
+//    suspend fun deleteCity(city: String)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCity(city: CitiesEntity)
 
+    @Delete
+    suspend fun deleteCity(city: CitiesEntity)
 }

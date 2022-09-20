@@ -72,7 +72,7 @@ class CitiesFragment: Fragment(R.layout.fragment_cities), Listener {
 
     override fun onClick(forecast: CurrentForecast, action: String) {
         when(action){
-            CitiesViewHolder.ACTION_DELETE -> viewModel.deleteCity(forecast.city)
+            CitiesViewHolder.ACTION_DELETE -> viewModel.deleteCity(forecast)
             CitiesViewHolder.ACTION_SHOW_DAY_FORECAST -> {
 
             }

@@ -41,8 +41,7 @@ class CitiesViewModel(
         }
     }
     
-    fun deleteCity(city: String){
-        Log.i("XXX", "deleteCity: ")
+    fun deleteCity(city: CurrentForecast){
         viewModelScope.launch { deleteCityUseCase.fetch(city) }
     }
 }

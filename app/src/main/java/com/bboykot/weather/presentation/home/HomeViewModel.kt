@@ -29,7 +29,7 @@ class HomeViewModel(
             val city:String? = defaultCity.value
 
             if (city != null) {
-                val forecast = getCurrentForecastUseCase.getCurrentForecastForCity(city)
+                val forecast = getCurrentForecastUseCase.fetch(city)
                 _result.value = Resource.Success(forecast)
             } else _result.value = Resource.Failure("Default city is not chosen. Join Search screen, find your city and set him as default")
         }

@@ -1,6 +1,7 @@
 package com.bboykot.weather.presentation.cities.adapter
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -23,5 +24,5 @@ class CitiesAdapter(private val context: Context, private val citiesForecasts: L
 }
 
 interface Listener{
-    fun onClick(forecast: CurrentForecast)
+    fun onClick(forecast: CurrentForecast, action: String)
 }

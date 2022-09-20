@@ -2,6 +2,7 @@ package com.bboykot.weather.app.di.module
 
 import androidx.lifecycle.ViewModel
 import com.bboykot.weather.app.di.component.ViewModelKey
+import com.bboykot.weather.domain.usecases.DeleteCityUseCase
 import com.bboykot.weather.domain.usecases.GetCitiesUseCase
 import com.bboykot.weather.domain.usecases.GetCurrentForecastUseCase
 import com.bboykot.weather.presentation.cities.CitiesViewModel
@@ -20,7 +21,13 @@ class CitiesModule {
         getCitiesUseCase: GetCitiesUseCase,
         customExceptionHandler: CustomExceptionHandler,
         getCurrentForecastUseCase: GetCurrentForecastUseCase,
+        deleteCityUseCase: DeleteCityUseCase,
     ): ViewModel {
-        return CitiesViewModel(getCitiesUseCase, customExceptionHandler, getCurrentForecastUseCase)
+        return CitiesViewModel(
+            getCitiesUseCase,
+            customExceptionHandler,
+            getCurrentForecastUseCase,
+            deleteCityUseCase
+        )
     }
 }

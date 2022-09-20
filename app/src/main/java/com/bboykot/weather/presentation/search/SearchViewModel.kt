@@ -25,7 +25,7 @@ class SearchViewModel(
     fun startSearch(city: String) {
         viewModelScope.launch(customExceptionHandler.getHandler(_result)) {
             _result.value = Resource.Loading()
-            val result = getCurrentForecastUseCase.getCurrentForecastForCity(city)
+            val result = getCurrentForecastUseCase.fetch(city)
             _result.value = Resource.Success(result)
         }
     }

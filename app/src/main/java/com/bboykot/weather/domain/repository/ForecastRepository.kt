@@ -14,4 +14,6 @@ interface ForecastRepository {
     fun getDefaultCityFromDatabase(): LiveData<String?>
 
     fun getCitiesFromDb(): LiveData<List<String>>
+
+    suspend fun deleteCity(city: String)
 }

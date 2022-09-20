@@ -34,4 +34,8 @@ class ForecastRepositoryImpl(
     override fun getCitiesFromDb(): LiveData<List<String>> {
         return citiesDatabase.getCitiesDao().getCitiesList()
     }
+
+    override suspend fun deleteCity(city: String) {
+        citiesDatabase.getCitiesDao().deleteCity(city)
+    }
 }

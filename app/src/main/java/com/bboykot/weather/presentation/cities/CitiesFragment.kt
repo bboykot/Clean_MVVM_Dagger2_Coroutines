@@ -16,6 +16,7 @@ import com.bboykot.weather.databinding.FragmentCitiesBinding
 import com.bboykot.weather.domain.models.CurrentForecast
 import com.bboykot.weather.domain.models.Resource
 import com.bboykot.weather.presentation.cities.adapter.CitiesAdapter
+import com.bboykot.weather.presentation.cities.adapter.CitiesViewHolder
 import com.bboykot.weather.presentation.cities.adapter.Listener
 import com.bboykot.weather.presentation.common.MainActivity
 import com.bboykot.weather.presentation.common.ViewModelFactory
@@ -69,7 +70,12 @@ class CitiesFragment: Fragment(R.layout.fragment_cities), Listener {
         })
     }
 
-    override fun onClick(forecast: CurrentForecast) {
-        Toast.makeText(requireContext(), forecast.city, Toast.LENGTH_LONG).show()
+    override fun onClick(forecast: CurrentForecast, action: String) {
+        when(action){
+            CitiesViewHolder.ACTION_DELETE -> viewModel.deleteCity(forecast.city)
+            CitiesViewHolder.ACTION_SHOW_DAY_FORECAST -> {
+
+            }
+        }
     }
 }

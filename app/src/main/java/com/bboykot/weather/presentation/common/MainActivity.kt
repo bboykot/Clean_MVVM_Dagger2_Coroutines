@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 val fragment = supportFragmentManager.findFragmentByTag(it.second)
                 if (fragment != null) {
                     supportFragmentManager.beginTransaction().addToBackStack(it.second)
-                        .replace(R.id.main_container,fragment, it.second)
+                        .replace(R.id.main_container, fragment, it.second)
                         .setReorderingAllowed(true).commit()
                 } else
                     supportFragmentManager.beginTransaction().addToBackStack(it.second)
@@ -48,9 +48,18 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             }
             true
         }
+
+        binding.bottomNav.selectedItemId = R.id.navigation_home
     }
 
-    companion object{
+    override fun onBackPressed() {
+        val lastFragmentTag = supportFragmentManager.fragments.last().tag
+        if (lastFragmentTag in listOf(HOME_TAG, SEARCH_TAG, CITIES_TAG)) finish()
+        else supportFragmentManager.popBackStack()
+    }
+
+
+    companion object {
         private const val HOME_TAG = "home_tag"
         private const val SEARCH_TAG = "search_tag"
         private const val CITIES_TAG = "cities_tag"

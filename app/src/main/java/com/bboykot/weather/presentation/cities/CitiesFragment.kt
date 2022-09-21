@@ -20,14 +20,15 @@ import com.bboykot.weather.presentation.cities.adapter.CitiesViewHolder
 import com.bboykot.weather.presentation.cities.adapter.Listener
 import com.bboykot.weather.presentation.common.MainActivity
 import com.bboykot.weather.presentation.common.ViewModelFactory
+import com.bboykot.weather.presentation.day.DayForecastFragment
 import javax.inject.Inject
 
-class CitiesFragment: Fragment(R.layout.fragment_cities), Listener {
+class CitiesFragment : Fragment(R.layout.fragment_cities), Listener {
     private val binding by viewBinding(FragmentCitiesBinding::bind)
 
     @Inject
-    lateinit var viewModelFactory : ViewModelFactory
-    private val viewModel by viewModels<CitiesViewModel> {viewModelFactory}
+    lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel by viewModels<CitiesViewModel> { viewModelFactory }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -42,9 +43,9 @@ class CitiesFragment: Fragment(R.layout.fragment_cities), Listener {
             viewModel.getCitiesForecasts()
         })
 
-        viewModel.result.observe(viewLifecycleOwner, Observer { result->
+        viewModel.result.observe(viewLifecycleOwner, Observer { result ->
             Log.i("XXX", "result: $result")
-            when(result){
+            when (result) {
                 is Resource.Success -> {
                     binding.progressBar.isVisible = false
                     binding.rvCities.isVisible = true
@@ -71,10 +72,11 @@ class CitiesFragment: Fragment(R.layout.fragment_cities), Listener {
     }
 
     override fun onClick(forecast: CurrentForecast, action: String) {
-        when(action){
+        when (action) {
             CitiesViewHolder.ACTION_DELETE -> viewModel.deleteCity(forecast)
             CitiesViewHolder.ACTION_SHOW_DAY_FORECAST -> {
-
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fc_container, DayForecastFragment()).addToBackStack("null").commit()
             }
         }
     }

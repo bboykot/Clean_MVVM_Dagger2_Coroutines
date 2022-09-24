@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             true
         }
 
-        binding.bottomNav.selectedItemId = R.id.navigation_home
+        if (savedInstanceState == null) binding.bottomNav.selectedItemId = R.id.navigation_home
     }
 
     override fun onBackPressed() {

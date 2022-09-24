@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -44,7 +43,6 @@ class CitiesFragment : Fragment(R.layout.fragment_cities), Listener {
         })
 
         viewModel.result.observe(viewLifecycleOwner, Observer { result ->
-            Log.i("XXX", "result: $result")
             when (result) {
                 is Resource.Success -> {
                     binding.progressBar.isVisible = false
@@ -76,7 +74,8 @@ class CitiesFragment : Fragment(R.layout.fragment_cities), Listener {
             CitiesViewHolder.ACTION_DELETE -> viewModel.deleteCity(forecast)
             CitiesViewHolder.ACTION_SHOW_DAY_FORECAST -> {
                 parentFragmentManager.beginTransaction()
-                    .replace(R.id.fc_container, DayForecastFragment()).addToBackStack("null").commit()
+                    .replace(R.id.fc_container, DayForecastFragment(forecast.city)).addToBackStack("null")
+                    .commit()
             }
         }
     }

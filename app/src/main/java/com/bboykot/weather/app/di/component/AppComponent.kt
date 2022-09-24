@@ -4,6 +4,7 @@ import android.content.Context
 import com.bboykot.weather.app.di.module.AppModule
 import com.bboykot.weather.app.di.module.DatabaseModule
 import com.bboykot.weather.app.di.module.NetworkModule
+import com.bboykot.weather.presentation.day.DayForecastFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -19,6 +20,8 @@ interface AppComponent {
         @BindsInstance
         fun context(context: Context) : AppCompBuilder
     }
+
+    fun injectDayForecastFragment(fragment: DayForecastFragment)
 
     fun getSearchComponent(): SearchComponent
     fun getHomeComponent(): HomeComponent

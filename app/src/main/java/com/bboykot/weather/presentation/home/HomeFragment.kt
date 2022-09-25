@@ -2,8 +2,9 @@ package com.bboykot.weather.presentation.home
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -15,6 +16,7 @@ import com.bboykot.weather.domain.models.CurrentForecast
 import com.bboykot.weather.domain.models.Resource
 import com.bboykot.weather.presentation.common.MainActivity
 import com.bboykot.weather.presentation.common.ViewModelFactory
+import com.bboykot.weather.presentation.day.DayForecastFragment
 import javax.inject.Inject
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -29,8 +31,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         (activity as MainActivity).homeComponent.injectHomeFragment(this)
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ) = inflater.inflate(R.layout.fragment_home, container, false)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.i("XXX", "onViewCreated: real? ")
+
+        binding.btnDayForecast.setOnClickListener { openDayForecast() }
 
         viewModel.defaultCity.observe(viewLifecycleOwner, Observer {
             viewModel.loadForecast()
@@ -62,5 +71,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
             }
         })
+    }
+
+    private fun openDayForecast() {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fc_home_test, DayForecastFragment(viewModel.defaultCity.value.toString()))
+            .addToBackStack("null")
+            .commit()
     }
 }

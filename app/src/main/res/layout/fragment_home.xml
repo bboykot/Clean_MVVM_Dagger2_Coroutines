@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginHorizontal="8dp"
-    >
+    android:layout_height="match_parent">
+
 
     <TextView
         android:id="@+id/tv_city"
@@ -21,6 +19,7 @@
         android:id="@+id/tv_wind_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:text="Ветер:"
         android:textSize="16sp"
@@ -62,6 +61,7 @@
         android:id="@+id/tv_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:text="Описание:"
         android:textSize="16sp"
@@ -103,17 +103,22 @@
         android:id="@+id/group_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="btn_day_forecast,btn_week_forecast,tv_description,tv_wind_title,tv_temp_title, tv_time" />
+        app:constraint_referenced_ids="btn_day_forecast,btn_week_forecast,tv_description,tv_wind_title,tv_temp_title, tv_city" />
 
     <TextView
         android:id="@+id/tv_error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="16sp"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fc_home_test"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="3dp"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

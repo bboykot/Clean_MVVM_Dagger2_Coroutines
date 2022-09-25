@@ -39,7 +39,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        binding.btnDayForecast.setOnClickListener { openDayForecast() }
+        binding.btnDayForecast.setOnClickListener { showDayForecast() }
 
         viewModel.defaultCity.observe(viewLifecycleOwner, Observer {
             viewModel.loadForecast()
@@ -73,7 +73,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         })
     }
 
-    private fun openDayForecast() {
+    private fun showDayForecast() {
         parentFragmentManager.beginTransaction()
             .replace(R.id.fc_home_test, DayForecastFragment(viewModel.defaultCity.value.toString()))
             .addToBackStack("null")

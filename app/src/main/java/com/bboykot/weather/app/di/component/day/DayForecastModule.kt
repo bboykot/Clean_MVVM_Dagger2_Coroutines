@@ -6,6 +6,7 @@ import com.bboykot.weather.app.di.component.ViewModelKey
 import com.bboykot.weather.domain.usecases.GetDayForecastUseCase
 import com.bboykot.weather.presentation.common.CustomExceptionHandler
 import com.bboykot.weather.presentation.day.DayForecastViewModel
+import com.bboykot.weather.presentation.week.WeekForecastViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
@@ -22,5 +23,12 @@ class DayForecastModule {
         extras: Bundle?,
     ): ViewModel {
         return DayForecastViewModel(getDayForecastUseCase, exceptionHandler, extras)
+    }
+
+    @IntoMap
+    @ViewModelKey(WeekForecastViewModel::class)
+    @Provides
+    fun provideWeekForecastViewModel(extras: Bundle?,): ViewModel{
+        return WeekForecastViewModel(extras)
     }
 }

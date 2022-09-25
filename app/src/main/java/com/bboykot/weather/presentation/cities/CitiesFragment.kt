@@ -20,6 +20,7 @@ import com.bboykot.weather.presentation.cities.adapter.Listener
 import com.bboykot.weather.presentation.common.MainActivity
 import com.bboykot.weather.presentation.common.ViewModelFactory
 import com.bboykot.weather.presentation.day.DayForecastFragment
+import com.bboykot.weather.presentation.week.WeekForecastFragment
 import javax.inject.Inject
 
 class CitiesFragment : Fragment(R.layout.fragment_cities), Listener {
@@ -75,6 +76,11 @@ class CitiesFragment : Fragment(R.layout.fragment_cities), Listener {
             CitiesViewHolder.ACTION_SHOW_DAY_FORECAST -> {
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.fc_container, DayForecastFragment(forecast.city)).addToBackStack("null")
+                    .commit()
+            }
+            CitiesViewHolder.ACTION_SHOW_WEEK_FORECAST -> {
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fc_container, WeekForecastFragment()).addToBackStack("null")
                     .commit()
             }
         }

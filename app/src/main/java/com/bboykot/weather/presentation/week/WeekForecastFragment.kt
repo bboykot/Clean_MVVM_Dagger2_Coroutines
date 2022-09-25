@@ -2,6 +2,7 @@ package com.bboykot.weather.presentation.week
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -26,5 +27,6 @@ class WeekForecastFragment : Fragment(R.layout.fragment_week_forecast) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Log.i("XXX", "onViewCreated: $viewModel")
     }
 }

@@ -9,7 +9,14 @@ fun Long.getDateTime(): String{
     return format.format(dateTime)
 }
 
+fun Long.getDay(): String{
+    val dateTime = Date(Extensions.TIME_FACTOR * this)
+    val format = SimpleDateFormat(Extensions.DAY_PATTERN, Locale.US)
+    return format.format(dateTime)
+}
+
 object Extensions {
     const val TIME_FACTOR = 1000
     const val TIME_PATTERN = "HH:mm dd.MM.yyyy"
+    const val DAY_PATTERN = "dd.MM.yyyy"
 }

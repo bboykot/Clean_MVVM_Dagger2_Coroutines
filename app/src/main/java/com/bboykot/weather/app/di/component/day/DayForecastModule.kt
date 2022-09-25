@@ -3,7 +3,9 @@ package com.bboykot.weather.app.di.component.day
 import android.os.Bundle
 import androidx.lifecycle.ViewModel
 import com.bboykot.weather.app.di.component.ViewModelKey
+import com.bboykot.weather.domain.repository.ForecastRepository
 import com.bboykot.weather.domain.usecases.GetDayForecastUseCase
+import com.bboykot.weather.domain.usecases.GetWeekForecastUseCase
 import com.bboykot.weather.presentation.common.CustomExceptionHandler
 import com.bboykot.weather.presentation.day.DayForecastViewModel
 import com.bboykot.weather.presentation.week.WeekForecastViewModel
@@ -28,7 +30,7 @@ class DayForecastModule {
     @IntoMap
     @ViewModelKey(WeekForecastViewModel::class)
     @Provides
-    fun provideWeekForecastViewModel(extras: Bundle?,): ViewModel{
-        return WeekForecastViewModel(extras)
+    fun provideWeekForecastViewModel(getWeekForecastUseCase: GetWeekForecastUseCase, extras: Bundle?,): ViewModel{
+        return WeekForecastViewModel(getWeekForecastUseCase, extras)
     }
 }

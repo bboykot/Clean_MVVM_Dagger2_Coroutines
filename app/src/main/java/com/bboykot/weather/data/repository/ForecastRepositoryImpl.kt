@@ -2,10 +2,13 @@ package com.bboykot.weather.data.repository
 
 import androidx.lifecycle.LiveData
 import com.bboykot.weather.app.getDateTime
+import com.bboykot.weather.app.getDay
 import com.bboykot.weather.data.db.CitiesDatabase
 import com.bboykot.weather.data.db.CitiesEntity
+import com.bboykot.weather.data.models.WeekForecast
 import com.bboykot.weather.data.remote.WeatherApiService
 import com.bboykot.weather.domain.models.CurrentForecast
+import com.bboykot.weather.domain.models.DailyForecast
 import com.bboykot.weather.domain.models.HourForecast
 import com.bboykot.weather.domain.repository.ForecastRepository
 
@@ -33,6 +36,18 @@ class ForecastRepositoryImpl(
                 it.main.temperature,
                 it.wind.speed,
                 it.weather[0].description
+            )
+        }
+    }
+
+    override suspend fun loadWeekForecast(city: String): List<DailyForecast> {
+        val forecast = weatherApiService.getWeekForecast(city)
+        return forecast.weekForecast.map {
+            DailyForecast(
+                it.time.getDay(),
+                it.temperature.day,
+                it.temperature.night,
+                it.wind
             )
         }
     }

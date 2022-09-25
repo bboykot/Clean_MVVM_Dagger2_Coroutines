@@ -12,21 +12,25 @@ import com.bboykot.weather.domain.repository.ForecastRepository
 import com.bboykot.weather.domain.usecases.GetDayForecastUseCase
 import com.bboykot.weather.presentation.common.CustomExceptionHandler
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class DayForecastViewModel(
     private val getDayForecastUseCase: GetDayForecastUseCase,
     private val exceptionHandler: CustomExceptionHandler,
-    private val extras: Bundle,
+    private val extras: Bundle?,
 ): ViewModel() {
 
     private val _result = MutableLiveData<Resource<List<HourForecast>>>()
     val result: LiveData<Resource<List<HourForecast>>> get() = _result
 
-    fun loadForecast(city: String){
+    init {
+        val city = extras?.getString(DayForecastFragment.ARGUMENT_CITY_KEY)
+        loadForecast(city.orEmpty())
+    }
+    private fun loadForecast(city: String){
         viewModelScope.launch(exceptionHandler.getHandler(_result)) {
             val forecast = getDayForecastUseCase.fetch(city)
             _result.value = Resource.Success(forecast)
-            Log.i("XXX", "forecast: $forecast: ")
         }
     }
 }

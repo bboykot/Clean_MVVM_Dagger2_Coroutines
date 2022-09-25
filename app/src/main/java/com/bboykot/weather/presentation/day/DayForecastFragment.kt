@@ -11,7 +11,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bboykot.weather.R
@@ -31,7 +30,9 @@ class DayForecastFragment : Fragment(R.layout.fragment_day_forecast) {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (activity?.application as App).appComponent.injectDayForecastFragment(this)
+
+        (activity?.application as App).appComponent.getDayForecastComponent().extras(arguments)
+            .buildForecastComp().injectDayForecastFragment(this)
     }
 
     override fun onCreateView(
@@ -42,9 +43,8 @@ class DayForecastFragment : Fragment(R.layout.fragment_day_forecast) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-//        binding.root.setOnClickListener { parentFragmentManager.popBackStack() }
-        val city = arguments?.getString(ARGUMENT_CITY_KEY)
-        Log.i("XXX", "onViewCreated: $city")
+        binding.toolbar.setNavigationOnClickListener { parentFragmentManager.popBackStack() }
+        binding.toolbar.title = arguments?.getString(ARGUMENT_CITY_KEY)
 
         binding.rvDayForecast.layoutManager = LinearLayoutManager(requireContext())
 
@@ -55,7 +55,8 @@ class DayForecastFragment : Fragment(R.layout.fragment_day_forecast) {
                     binding.pbLoading.isVisible = false
                     binding.tvError.isVisible = false
 
-                    binding.rvDayForecast.adapter = DayForecastAdapter(requireContext(), result.data)
+                    binding.rvDayForecast.adapter =
+                        DayForecastAdapter(requireContext(), result.data)
                 }
                 is Resource.Failure -> {
                     binding.rvDayForecast.isVisible = false
@@ -73,8 +74,9 @@ class DayForecastFragment : Fragment(R.layout.fragment_day_forecast) {
         })
     }
 
-    companion object{
+    companion object {
         const val ARGUMENT_CITY_KEY = "argument_city_key"
+
         operator fun invoke(city: String) = DayForecastFragment().apply {
             arguments = bundleOf(ARGUMENT_CITY_KEY to city)
         }

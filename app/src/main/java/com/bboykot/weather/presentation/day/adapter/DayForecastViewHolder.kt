@@ -9,6 +9,6 @@ class DayForecastViewHolder(private val binding: ItemHourForecastBinding): Recyc
         binding.tvTemp.text = hourForecast.temperature.toString()
         binding.tvWind.text = hourForecast.wind.toString()
         binding.tvDescription.text = hourForecast.description
-        binding.tvTime.text = hourForecast.time.toString()
+        binding.tvTime.text = hourForecast.time
     }
 }

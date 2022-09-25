@@ -1,6 +1,7 @@
 package com.bboykot.weather.data.repository
 
 import androidx.lifecycle.LiveData
+import com.bboykot.weather.app.getDateTime
 import com.bboykot.weather.data.db.CitiesDatabase
 import com.bboykot.weather.data.db.CitiesEntity
 import com.bboykot.weather.data.remote.WeatherApiService
@@ -28,7 +29,7 @@ class ForecastRepositoryImpl(
         val forecast = weatherApiService.getDayForecast(city)
         return forecast.dayForecast.map {
             HourForecast(
-                it.time,
+                it.time.getDateTime(),
                 it.main.temperature,
                 it.wind.speed,
                 it.weather[0].description

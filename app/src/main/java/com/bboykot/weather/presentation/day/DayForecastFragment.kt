@@ -43,8 +43,10 @@ class DayForecastFragment : Fragment(R.layout.fragment_day_forecast) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        binding.toolbar.setNavigationOnClickListener { parentFragmentManager.popBackStack() }
-        binding.toolbar.title = arguments?.getString(ARGUMENT_CITY_KEY)
+        binding.toolbar.apply {
+            setNavigationOnClickListener { parentFragmentManager.popBackStack() }
+            title = arguments?.getString(ARGUMENT_CITY_KEY)
+        }
 
         binding.rvDayForecast.layoutManager = LinearLayoutManager(requireContext())
 
@@ -75,6 +77,7 @@ class DayForecastFragment : Fragment(R.layout.fragment_day_forecast) {
     }
 
     companion object {
+        const val DAY_TAG = "day_tag"
         const val ARGUMENT_CITY_KEY = "argument_city_key"
 
         operator fun invoke(city: String) = DayForecastFragment().apply {

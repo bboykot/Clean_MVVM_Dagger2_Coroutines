@@ -5,4 +5,5 @@ data class DailyForecast(
     val dayTemperature: Double,
     val nightTemperature: Double,
     val wind: Double,
+    val description: String,
 )

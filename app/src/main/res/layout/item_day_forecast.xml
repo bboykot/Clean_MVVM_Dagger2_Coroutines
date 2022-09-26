@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:layout_marginVertical="4dp"
+    android:background="@drawable/bg_item"
+    android:backgroundTint="#ebedf0"
+    android:paddingStart="8dp">
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_wind_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Ветер:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_time" />
+
+    <TextView
+        android:id="@+id/tv_wind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_wind_title"
+        app:layout_constraintStart_toEndOf="@id/tv_wind_title"
+        app:layout_constraintTop_toTopOf="@+id/tv_wind_title" />
+
+    <TextView
+        android:id="@+id/tv_temp_title_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:text="Температура днем:"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_wind"
+        app:layout_constraintStart_toEndOf="@+id/tv_wind"
+        app:layout_constraintTop_toTopOf="@+id/tv_wind" />
+
+
+    <TextView
+        android:id="@+id/tv_temp_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_temp_title_day"
+        app:layout_constraintStart_toEndOf="@+id/tv_temp_title_day"
+        app:layout_constraintTop_toTopOf="@+id/tv_temp_title_day" />
+
+    <TextView
+        android:id="@+id/tv_temp_title_night"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="ночью:"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_temp_title_day"
+        app:layout_constraintTop_toBottomOf="@+id/tv_temp_title_day" />
+
+    <TextView
+        android:id="@+id/tv_temp_night"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_temp_title_night"
+        app:layout_constraintStart_toEndOf="@+id/tv_temp_title_night"
+        app:layout_constraintTop_toTopOf="@+id/tv_temp_title_night" />
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Описание:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_temp_title_night"
+        android:layout_marginTop="8dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

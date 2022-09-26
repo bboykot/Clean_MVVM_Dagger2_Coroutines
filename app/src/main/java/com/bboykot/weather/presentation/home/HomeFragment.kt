@@ -17,6 +17,7 @@ import com.bboykot.weather.domain.models.Resource
 import com.bboykot.weather.presentation.common.MainActivity
 import com.bboykot.weather.presentation.common.ViewModelFactory
 import com.bboykot.weather.presentation.day.DayForecastFragment
+import com.bboykot.weather.presentation.week.WeekForecastFragment
 import javax.inject.Inject
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -40,6 +41,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding.btnDayForecast.setOnClickListener { showDayForecast() }
+        binding.btnWeekForecast.setOnClickListener { showWeekForecast() }
 
         viewModel.defaultCity.observe(viewLifecycleOwner, Observer {
             viewModel.loadForecast()
@@ -76,7 +78,17 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun showDayForecast() {
         parentFragmentManager.beginTransaction()
             .replace(R.id.fc_home_test, DayForecastFragment(viewModel.defaultCity.value.toString()))
-            .addToBackStack("null")
+            .addToBackStack(DayForecastFragment.DAY_TAG)
+            .commit()
+    }
+
+    private fun showWeekForecast() {
+        parentFragmentManager.beginTransaction()
+            .replace(
+                R.id.fc_home_test,
+                WeekForecastFragment(viewModel.defaultCity.value.toString())
+            )
+            .addToBackStack(WeekForecastFragment.WEEK_TAG)
             .commit()
     }
 }

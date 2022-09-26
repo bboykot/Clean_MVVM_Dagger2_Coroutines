@@ -24,7 +24,7 @@ class ForecastRepositoryImpl(
             forecast.city,
             forecast.main.temperature,
             forecast.wind.speed,
-            forecast.weather[0].description
+            forecast.weather[0].description,
         )
     }
 
@@ -35,7 +35,7 @@ class ForecastRepositoryImpl(
                 it.time.getDateTime(),
                 it.main.temperature,
                 it.wind.speed,
-                it.weather[0].description
+                it.weather[0].description,
             )
         }
     }
@@ -47,7 +47,8 @@ class ForecastRepositoryImpl(
                 it.time.getDay(),
                 it.temperature.day,
                 it.temperature.night,
-                it.wind
+                it.wind,
+                it.weather[0].description,
             )
         }
     }

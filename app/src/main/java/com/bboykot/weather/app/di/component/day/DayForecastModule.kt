@@ -30,7 +30,11 @@ class DayForecastModule {
     @IntoMap
     @ViewModelKey(WeekForecastViewModel::class)
     @Provides
-    fun provideWeekForecastViewModel(getWeekForecastUseCase: GetWeekForecastUseCase, extras: Bundle?,): ViewModel{
-        return WeekForecastViewModel(getWeekForecastUseCase, extras)
+    fun provideWeekForecastViewModel(
+        getWeekForecastUseCase: GetWeekForecastUseCase,
+        exceptionHandler: CustomExceptionHandler,
+        extras: Bundle?,
+    ): ViewModel {
+        return WeekForecastViewModel(getWeekForecastUseCase, exceptionHandler, extras)
     }
 }

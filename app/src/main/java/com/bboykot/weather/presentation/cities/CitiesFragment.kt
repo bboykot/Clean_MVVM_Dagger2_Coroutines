@@ -75,12 +75,12 @@ class CitiesFragment : Fragment(R.layout.fragment_cities), Listener {
             CitiesViewHolder.ACTION_DELETE -> viewModel.deleteCity(forecast)
             CitiesViewHolder.ACTION_SHOW_DAY_FORECAST -> {
                 parentFragmentManager.beginTransaction()
-                    .replace(R.id.fc_container, DayForecastFragment(forecast.city)).addToBackStack("null")
+                    .replace(R.id.fc_container, DayForecastFragment(forecast.city)).addToBackStack(DayForecastFragment.DAY_TAG)
                     .commit()
             }
             CitiesViewHolder.ACTION_SHOW_WEEK_FORECAST -> {
                 parentFragmentManager.beginTransaction()
-                    .replace(R.id.fc_container, WeekForecastFragment()).addToBackStack("null")
+                    .replace(R.id.fc_container, WeekForecastFragment(forecast.city)).addToBackStack(WeekForecastFragment.WEEK_TAG)
                     .commit()
             }
         }

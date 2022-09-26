@@ -30,6 +30,8 @@ class WeekForecastViewModel(
     }
     private fun loadForecast(city: String){
         viewModelScope.launch(exceptionHandler.getHandler(_result)) {
+            _result.value = Resource.Loading()
+
             val forecast = getWeekForecastUseCase.fetch(city)
             _result.value = Resource.Success(forecast)
         }

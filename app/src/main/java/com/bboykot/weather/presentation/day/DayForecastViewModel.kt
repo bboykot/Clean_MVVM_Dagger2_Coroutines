@@ -29,6 +29,8 @@ class DayForecastViewModel(
     }
     private fun loadForecast(city: String){
         viewModelScope.launch(exceptionHandler.getHandler(_result)) {
+            _result.value = Resource.Loading()
+
             val forecast = getDayForecastUseCase.fetch(city)
             _result.value = Resource.Success(forecast)
         }

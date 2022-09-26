@@ -2,7 +2,7 @@ package com.bboykot.weather.domain.models
 
 data class HourForecast(
     val time: String,
-    val temperature: Double,
-    val wind: Double,
+    val temperature: String,
+    val wind: String,
     val description: String,
 )

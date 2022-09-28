@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bboykot.weather.R
+import com.bboykot.weather.app.callMainActivity
 import com.bboykot.weather.databinding.FragmentCitiesBinding
 import com.bboykot.weather.domain.models.CurrentForecast
 import com.bboykot.weather.domain.models.Resource
@@ -32,7 +33,7 @@ class CitiesFragment : Fragment(R.layout.fragment_cities), Listener {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (activity as MainActivity).citiesComponent.injectCitiesFragment(this)
+        callMainActivity().citiesComponent.injectCitiesFragment(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bboykot.weather.R
-import com.bboykot.weather.app.App
+import com.bboykot.weather.app.callAppComponent
 import com.bboykot.weather.databinding.FragmentWeekForecastBinding
 import com.bboykot.weather.domain.models.Resource
 import com.bboykot.weather.presentation.common.ViewModelFactory
@@ -27,7 +27,7 @@ class WeekForecastFragment : Fragment(R.layout.fragment_week_forecast) {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (activity?.application as App).appComponent.getDayForecastComponent().extras(arguments)
+        callAppComponent().getForecastComponent().extras(arguments)
             .buildForecastComp().injectWeekForecastViewModel(this)
     }
 

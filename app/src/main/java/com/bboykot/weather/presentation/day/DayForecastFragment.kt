@@ -2,10 +2,7 @@ package com.bboykot.weather.presentation.day
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -14,7 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bboykot.weather.R
-import com.bboykot.weather.app.App
+import com.bboykot.weather.app.callAppComponent
 import com.bboykot.weather.databinding.FragmentDayForecastBinding
 import com.bboykot.weather.domain.models.Resource
 import com.bboykot.weather.presentation.common.ViewModelFactory
@@ -31,15 +28,9 @@ class DayForecastFragment : Fragment(R.layout.fragment_day_forecast) {
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        (activity?.application as App).appComponent.getDayForecastComponent().extras(arguments)
+        callAppComponent().getForecastComponent().extras(arguments)
             .buildForecastComp().injectDayForecastFragment(this)
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) = inflater.inflate(R.layout.fragment_day_forecast, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 

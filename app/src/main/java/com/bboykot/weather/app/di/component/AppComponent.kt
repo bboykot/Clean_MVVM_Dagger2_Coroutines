@@ -1,11 +1,10 @@
 package com.bboykot.weather.app.di.component
 
 import android.content.Context
-import com.bboykot.weather.app.di.component.day.DayForecastComponent
+import com.bboykot.weather.app.di.component.day.ForecastComponent
 import com.bboykot.weather.app.di.module.AppModule
 import com.bboykot.weather.app.di.module.DatabaseModule
 import com.bboykot.weather.app.di.module.NetworkModule
-import com.bboykot.weather.presentation.day.DayForecastFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -25,5 +24,5 @@ interface AppComponent {
     fun getSearchComponent(): SearchComponent
     fun getHomeComponent(): HomeComponent
     fun getCitiesComponent(): CitiesComponent
-    fun getDayForecastComponent(): DayForecastComponent.ForecastCompBuilder
+    fun getForecastComponent(): ForecastComponent.ForecastCompBuilder
 }

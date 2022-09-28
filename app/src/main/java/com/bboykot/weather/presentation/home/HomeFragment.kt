@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bboykot.weather.R
+import com.bboykot.weather.app.callMainActivity
 import com.bboykot.weather.databinding.FragmentHomeBinding
 import com.bboykot.weather.domain.models.CurrentForecast
 import com.bboykot.weather.domain.models.Resource
@@ -29,14 +30,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (activity as MainActivity).homeComponent.injectHomeFragment(this)
+        callMainActivity().homeComponent.injectHomeFragment(this)
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) = inflater.inflate(R.layout.fragment_home, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -55,8 +50,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     binding.progressBar.isVisible = false
 
                     binding.tvCity.text = result.data.city
-                    binding.tvTemp.text = result.data.temperature.toString()
-                    binding.tvWind.text = result.data.wind.toString()
+                    binding.tvTemp.text = result.data.temperature
+                    binding.tvWind.text = result.data.wind
                     binding.tvDescription.text = result.data.description
                 }
                 is Resource.Failure -> {

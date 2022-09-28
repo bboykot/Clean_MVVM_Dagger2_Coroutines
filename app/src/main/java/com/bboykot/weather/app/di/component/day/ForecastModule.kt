@@ -14,7 +14,7 @@ import dagger.Provides
 import dagger.multibindings.IntoMap
 
 @Module
-class DayForecastModule {
+class ForecastModule {
 
     @IntoMap
     @ViewModelKey(DayForecastViewModel::class)

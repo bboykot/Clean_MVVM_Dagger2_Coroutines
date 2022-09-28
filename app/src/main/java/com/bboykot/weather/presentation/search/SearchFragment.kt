@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bboykot.weather.R
+import com.bboykot.weather.app.callMainActivity
 import com.bboykot.weather.databinding.FragmentSearchBinding
 import com.bboykot.weather.domain.models.CurrentForecast
 import com.bboykot.weather.domain.models.Resource
@@ -27,7 +28,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (activity as MainActivity).searchSubcomponent.injectSearchFragment(this)
+        callMainActivity().searchSubcomponent.injectSearchFragment(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

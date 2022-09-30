@@ -1,6 +1,5 @@
 package com.bboykot.weather.presentation.cities
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,6 +10,8 @@ import com.bboykot.weather.domain.usecases.DeleteCityUseCase
 import com.bboykot.weather.domain.usecases.GetCitiesUseCase
 import com.bboykot.weather.domain.usecases.GetCurrentForecastUseCase
 import com.bboykot.weather.presentation.common.CustomExceptionHandler
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 class CitiesViewModel(
@@ -20,14 +21,19 @@ class CitiesViewModel(
     private val deleteCityUseCase: DeleteCityUseCase,
 ) : ViewModel() {
 
-    val citiesList = getCitiesUseCase.fetch()
-
     private val _result: MutableLiveData<Resource<List<CurrentForecast>>> = MutableLiveData()
     val result: LiveData<Resource<List<CurrentForecast>>> get() = _result
 
-    fun getCitiesForecasts() {
+    init {
+        getCitiesUseCase.fetch()
+            .onEach {
+                getCitiesForecasts(it)
+            }
+            .launchIn(viewModelScope)
+    }
+
+    private fun getCitiesForecasts(cities: List<String>) {
         viewModelScope.launch(customExceptionHandler.getHandler(_result)) {
-            val cities = citiesList.value.orEmpty()
             val citiesForecasts = mutableListOf<CurrentForecast>()
             _result.value = Resource.Loading()
 
@@ -36,12 +42,12 @@ class CitiesViewModel(
                     citiesForecasts.add(getCurrentForecastUseCase.fetch(city))
                 }
                 _result.value = Resource.Success(citiesForecasts)
-            }
-            else _result.value = Resource.Failure("Here is no saved cities. Join Search screen? find and save city")
+            } else _result.value =
+                Resource.Failure("Here is no saved cities. Join Search screen? find and save city")
         }
     }
-    
-    fun deleteCity(city: CurrentForecast){
+
+    fun deleteCity(city: CurrentForecast) {
         viewModelScope.launch { deleteCityUseCase.fetch(city) }
     }
 }

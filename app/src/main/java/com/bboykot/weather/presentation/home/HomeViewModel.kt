@@ -9,6 +9,8 @@ import com.bboykot.weather.domain.models.Resource
 import com.bboykot.weather.domain.usecases.GetCurrentForecastUseCase
 import com.bboykot.weather.domain.usecases.GetDefaultCityUseCase
 import com.bboykot.weather.presentation.common.CustomExceptionHandler
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
@@ -20,13 +22,21 @@ class HomeViewModel(
     private val _result = MutableLiveData<Resource<CurrentForecast>>()
     val result: LiveData<Resource<CurrentForecast>> get() = _result
 
-    val defaultCity: LiveData<String?> = getDefaultCityUseCase.fetch()
+    private var _defaultCity: String? = ""
+    val defaultCity get() = _defaultCity.orEmpty()
+    
+    init {
+        getDefaultCityUseCase.fetch()
+            .onEach { 
+                loadForecast(it)
+                _defaultCity = it
+            }
+            .launchIn(viewModelScope)
+    }
 
-    fun loadForecast() {
+    private fun loadForecast(city: String?) {
         viewModelScope.launch(customExceptionHandler.getHandler(_result)) {
             _result.value = Resource.Loading()
-
-            val city:String? = defaultCity.value
 
             if (city != null) {
                 val forecast = getCurrentForecastUseCase.fetch(city)

@@ -38,10 +38,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.btnDayForecast.setOnClickListener { showDayForecast() }
         binding.btnWeekForecast.setOnClickListener { showWeekForecast() }
 
-        viewModel.defaultCity.observe(viewLifecycleOwner, Observer {
-            viewModel.loadForecast()
-        })
-
         viewModel.result.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Resource.Success<CurrentForecast> -> {
@@ -72,7 +68,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun showDayForecast() {
         parentFragmentManager.beginTransaction()
-            .replace(R.id.fc_home_test, DayForecastFragment(viewModel.defaultCity.value.toString()))
+            .replace(R.id.fc_home_test, DayForecastFragment(viewModel.defaultCity))
             .addToBackStack(DayForecastFragment.DAY_TAG)
             .commit()
     }
@@ -81,7 +77,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         parentFragmentManager.beginTransaction()
             .replace(
                 R.id.fc_home_test,
-                WeekForecastFragment(viewModel.defaultCity.value.toString())
+                WeekForecastFragment(viewModel.defaultCity)
             )
             .addToBackStack(WeekForecastFragment.WEEK_TAG)
             .commit()

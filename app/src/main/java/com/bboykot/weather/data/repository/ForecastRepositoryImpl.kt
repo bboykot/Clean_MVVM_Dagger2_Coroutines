@@ -11,6 +11,7 @@ import com.bboykot.weather.domain.models.CurrentForecast
 import com.bboykot.weather.domain.models.DailyForecast
 import com.bboykot.weather.domain.models.HourForecast
 import com.bboykot.weather.domain.repository.ForecastRepository
+import kotlinx.coroutines.flow.Flow
 
 class ForecastRepositoryImpl(
     private val weatherApiService: WeatherApiService,
@@ -46,11 +47,11 @@ class ForecastRepositoryImpl(
         citiesDatabase.getCitiesDao().removeCurrentDefaultFlag()
     }
 
-    override fun getDefaultCityFromDatabase(): LiveData<String?> {
+    override fun getDefaultCityFromDatabase(): Flow<String?> {
         return citiesDatabase.getCitiesDao().getDefaultCity()
     }
 
-    override fun getCitiesFromDb(): LiveData<List<String>> {
+    override fun getCitiesFromDb(): Flow<List<String>> {
         return citiesDatabase.getCitiesDao().getCitiesList()
     }
 

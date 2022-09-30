@@ -5,6 +5,7 @@ import com.bboykot.weather.data.models.WeekForecast
 import com.bboykot.weather.domain.models.CurrentForecast
 import com.bboykot.weather.domain.models.DailyForecast
 import com.bboykot.weather.domain.models.HourForecast
+import kotlinx.coroutines.flow.Flow
 
 interface ForecastRepository {
 
@@ -18,9 +19,9 @@ interface ForecastRepository {
 
     suspend fun removeCurrentDefaultFlag()
 
-    fun getDefaultCityFromDatabase(): LiveData<String?>
+    fun getDefaultCityFromDatabase(): Flow<String?>
 
-    fun getCitiesFromDb(): LiveData<List<String>>
+    fun getCitiesFromDb(): Flow<List<String>>
 
     suspend fun deleteCity(city: CurrentForecast)
 }

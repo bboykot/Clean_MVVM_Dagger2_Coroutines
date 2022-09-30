@@ -40,10 +40,6 @@ class CitiesFragment : Fragment(R.layout.fragment_cities), Listener {
 
         binding.rvCities.layoutManager = LinearLayoutManager(requireContext())
 
-        viewModel.citiesList.observe(viewLifecycleOwner, Observer {
-            viewModel.getCitiesForecasts()
-        })
-
         viewModel.result.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Resource.Success -> {

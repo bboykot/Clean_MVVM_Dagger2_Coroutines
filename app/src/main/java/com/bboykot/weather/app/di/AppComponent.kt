@@ -1,10 +1,10 @@
-package com.bboykot.weather.app.di.component
+package com.bboykot.weather.app.di
 
 import android.content.Context
-import com.bboykot.weather.app.di.component.day.ForecastComponent
-import com.bboykot.weather.app.di.module.AppModule
-import com.bboykot.weather.app.di.module.DatabaseModule
-import com.bboykot.weather.app.di.module.NetworkModule
+import com.bboykot.weather.app.di.cities.CitiesComponent
+import com.bboykot.weather.app.di.forecast.ForecastComponent
+import com.bboykot.weather.app.di.home.HomeComponent
+import com.bboykot.weather.app.di.search.SearchComponent
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton

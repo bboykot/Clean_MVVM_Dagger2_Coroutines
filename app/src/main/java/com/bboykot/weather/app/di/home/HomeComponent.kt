@@ -1,6 +1,5 @@
-package com.bboykot.weather.app.di.component
+package com.bboykot.weather.app.di.home
 
-import com.bboykot.weather.app.di.module.HomeModule
 import com.bboykot.weather.presentation.home.HomeFragment
 import dagger.Subcomponent
 

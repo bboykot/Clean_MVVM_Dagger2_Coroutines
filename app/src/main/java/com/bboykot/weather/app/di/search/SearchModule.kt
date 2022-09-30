@@ -1,8 +1,7 @@
-package com.bboykot.weather.app.di.module
+package com.bboykot.weather.app.di.search
 
 import androidx.lifecycle.ViewModel
-import com.bboykot.weather.app.di.component.ViewModelKey
-import com.bboykot.weather.data.remote.WeatherApiService
+import com.bboykot.weather.app.di.ViewModelKey
 import com.bboykot.weather.domain.usecases.GetCurrentForecastUseCase
 import com.bboykot.weather.domain.usecases.RemoveCurrentDefaultFlagUseCase
 import com.bboykot.weather.domain.usecases.SaveCityUseCase

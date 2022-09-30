@@ -1,4 +1,4 @@
-package com.bboykot.weather.app.di.component
+package com.bboykot.weather.app.di
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

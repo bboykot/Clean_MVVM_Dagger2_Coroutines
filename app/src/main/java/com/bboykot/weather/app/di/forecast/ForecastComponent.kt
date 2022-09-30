@@ -1,4 +1,4 @@
-package com.bboykot.weather.app.di.component.day
+package com.bboykot.weather.app.di.forecast
 
 import android.os.Bundle
 import com.bboykot.weather.presentation.day.DayForecastFragment

@@ -1,6 +1,5 @@
-package com.bboykot.weather.app.di.component
+package com.bboykot.weather.app.di.search
 
-import com.bboykot.weather.app.di.module.SearchModule
 import com.bboykot.weather.presentation.search.SearchFragment
 import dagger.Subcomponent
 

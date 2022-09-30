@@ -1,4 +1,4 @@
-package com.bboykot.weather.app.di.module
+package com.bboykot.weather.app.di
 
 import dagger.Module
 

@@ -1,7 +1,7 @@
-package com.bboykot.weather.app.di.module
+package com.bboykot.weather.app.di.home
 
 import androidx.lifecycle.ViewModel
-import com.bboykot.weather.app.di.component.ViewModelKey
+import com.bboykot.weather.app.di.ViewModelKey
 import com.bboykot.weather.domain.usecases.GetCurrentForecastUseCase
 import com.bboykot.weather.domain.usecases.GetDefaultCityUseCase
 import com.bboykot.weather.presentation.common.CustomExceptionHandler

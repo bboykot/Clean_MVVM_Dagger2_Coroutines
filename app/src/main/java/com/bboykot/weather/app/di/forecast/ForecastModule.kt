@@ -1,9 +1,8 @@
-package com.bboykot.weather.app.di.component.day
+package com.bboykot.weather.app.di.forecast
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModel
-import com.bboykot.weather.app.di.component.ViewModelKey
-import com.bboykot.weather.domain.repository.ForecastRepository
+import com.bboykot.weather.app.di.ViewModelKey
 import com.bboykot.weather.domain.usecases.GetDayForecastUseCase
 import com.bboykot.weather.domain.usecases.GetWeekForecastUseCase
 import com.bboykot.weather.presentation.common.CustomExceptionHandler

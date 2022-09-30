@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bboykot.weather.R
 import com.bboykot.weather.app.App
-import com.bboykot.weather.app.di.component.CitiesComponent
-import com.bboykot.weather.app.di.component.HomeComponent
-import com.bboykot.weather.app.di.component.SearchComponent
+import com.bboykot.weather.app.di.cities.CitiesComponent
+import com.bboykot.weather.app.di.home.HomeComponent
+import com.bboykot.weather.app.di.search.SearchComponent
 import com.bboykot.weather.databinding.ActivityMainBinding
 import com.bboykot.weather.presentation.cities.CitiesFragment
 import com.bboykot.weather.presentation.home.HomeFragment

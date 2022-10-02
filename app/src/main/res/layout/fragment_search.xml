@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="8dp"
-        android:hint="Enter city name"
+        android:hint="@string/search_hint"
         app:layout_constraintEnd_toStartOf="@+id/btn_search"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,7 +21,7 @@
         android:id="@+id/btn_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search"
+        android:text="@string/search"
         app:layout_constraintBottom_toBottomOf="@+id/et_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/et_search" />
@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Ветер:"
+        android:text="@string/wind"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_city" />
@@ -71,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:text="Температура:"
+        android:text="@string/temperature"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_wind"
         app:layout_constraintStart_toEndOf="@+id/tv_wind"
@@ -92,7 +92,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Описание:"
+        android:text="@string/description"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_wind_title" />
@@ -112,7 +112,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Save city"
+        android:text="@string/save_city"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_description_title" />
 
@@ -121,7 +121,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Save as default city"
+        android:text="@string/save_as_default"
         app:layout_constraintBottom_toBottomOf="@+id/btn_save"
         app:layout_constraintStart_toEndOf="@+id/btn_save"
         app:layout_constraintTop_toTopOf="@+id/btn_save" />

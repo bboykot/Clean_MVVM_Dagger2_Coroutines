@@ -1,7 +1,19 @@
 <resources>
+    //Common
     <string name="app_name">Weather</string>
-    <string name="wind_speed">\ м/с</string>
+    <string name="wind_speed">\ m/s</string>
     <string name="temperature_degree">\ С</string>
+    <string name="wind">Wind:</string>
+    <string name="temperature">Temperature:</string>
+    <string name="description">Description:</string>
+    <string name="day">Day</string>
+    <string name="week">Week</string>
+    <string name="search_hint">Enter city name</string>
+    <string name="search">Search</string>
+    <string name="save_city">Save city</string>
+    <string name="save_as_default">Save as default city</string>
+    <string name="day_temperature">Day temperature:</string>
+    <string name="night">night:</string>
 
     //Exceptions
     <string name="exception_enter_city">Enter city name, then start search</string>

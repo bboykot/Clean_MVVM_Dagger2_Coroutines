@@ -17,8 +17,8 @@ interface WeatherApiService {
     suspend fun getWeekForecast(@Query("q") name: String): WeekForecast
 
     companion object {
-        private const val CURRENT_FORECAST = "weather?lang=ru&units=metric&appid=6493a6156cae804aa207eb9ee638c79b"
-        private const val DAY_FORECAST = "forecast?cnt=8&lang=ru&units=metric&appid=6493a6156cae804aa207eb9ee638c79b"
-        private const val WEEK_FORECAST = "forecast/daily?units=metric&cnt=7&lang=ru&appid=c0c4a4b4047b97ebc5948ac9c48c0559"
+        private const val CURRENT_FORECAST = "weather?lang=en&units=metric&appid=6493a6156cae804aa207eb9ee638c79b"
+        private const val DAY_FORECAST = "forecast?cnt=8&lang=en&units=metric&appid=6493a6156cae804aa207eb9ee638c79b"
+        private const val WEEK_FORECAST = "forecast/daily?units=metric&cnt=7&lang=en&appid=c0c4a4b4047b97ebc5948ac9c48c0559"
     }
 }

@@ -2,4 +2,10 @@
     <string name="app_name">Weather</string>
     <string name="wind_speed">\ м/с</string>
     <string name="temperature_degree">\ С</string>
+
+    //Exceptions
+    <string name="exception_enter_city">Enter city name, then start search</string>
+    <string name="exception_wrong_city">Wrong city name</string>
+    <string name="exception_connection_error">Connection error</string>
+    <string name="exception_unknown_error">Something went wrong</string>
 </resources>

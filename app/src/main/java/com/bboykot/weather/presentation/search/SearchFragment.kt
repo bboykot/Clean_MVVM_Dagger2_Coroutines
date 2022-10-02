@@ -51,8 +51,8 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                     binding.groupData.isVisible = true
 
                     binding.tvCity.text = result.data.city
-                    binding.tvTemp.text = result.data.temperature.toString()
-                    binding.tvWind.text = result.data.wind.toString()
+                    binding.tvTemp.text = result.data.temperature
+                    binding.tvWind.text = result.data.wind
                     binding.tvDescription.text = result.data.description
                 }
                 is Resource.Failure -> {

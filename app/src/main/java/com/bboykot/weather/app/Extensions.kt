@@ -14,6 +14,8 @@ fun Long.getDate(pattern: String): String{
 fun Fragment.callMainActivity() = activity as MainActivity
 fun Fragment.callAppComponent() = (activity?.application as App).appComponent
 
+fun Fragment.handleView(){}
+
 object Extensions {
     const val TIME_FACTOR = 1000
     const val DAY_TIME_PATTERN = "HH:mm dd.MM.yyyy"

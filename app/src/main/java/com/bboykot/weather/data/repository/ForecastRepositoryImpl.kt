@@ -1,6 +1,5 @@
 package com.bboykot.weather.data.repository
 
-import androidx.lifecycle.LiveData
 import com.bboykot.weather.app.mappers.MapperCurrentForecastToDb
 import com.bboykot.weather.app.mappers.MapperDayToHour
 import com.bboykot.weather.app.mappers.MapperForecastToCurrentForecast

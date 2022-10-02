@@ -24,10 +24,10 @@ class HomeViewModel(
 
     private var _defaultCity: String? = ""
     val defaultCity get() = _defaultCity.orEmpty()
-    
+
     init {
         getDefaultCityUseCase.fetch()
-            .onEach { 
+            .onEach {
                 loadForecast(it)
                 _defaultCity = it
             }

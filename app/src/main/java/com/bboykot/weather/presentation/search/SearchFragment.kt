@@ -14,7 +14,6 @@ import com.bboykot.weather.app.callMainActivity
 import com.bboykot.weather.databinding.FragmentSearchBinding
 import com.bboykot.weather.domain.models.CurrentForecast
 import com.bboykot.weather.domain.models.Resource
-import com.bboykot.weather.presentation.common.MainActivity
 import com.bboykot.weather.presentation.common.ViewModelFactory
 import javax.inject.Inject
 

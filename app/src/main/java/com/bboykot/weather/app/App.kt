@@ -4,7 +4,7 @@ import android.app.Application
 import com.bboykot.weather.app.di.AppComponent
 import com.bboykot.weather.app.di.DaggerAppComponent
 
-class App: Application() {
+class App : Application() {
     lateinit var appComponent: AppComponent
 
     override fun onCreate() {

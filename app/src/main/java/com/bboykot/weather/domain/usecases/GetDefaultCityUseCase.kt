@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GetDefaultCityUseCase @Inject constructor(private val forecastRepository: ForecastRepository) {
-    fun fetch(): Flow<String?>{
+    fun fetch(): Flow<String?> {
         return forecastRepository.getDefaultCityFromDatabase()
     }
 }

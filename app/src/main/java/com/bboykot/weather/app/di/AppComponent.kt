@@ -14,11 +14,11 @@ import javax.inject.Singleton
 interface AppComponent {
 
     @Component.Builder
-    interface AppCompBuilder{
+    interface AppCompBuilder {
         fun buildAppComp(): AppComponent
 
         @BindsInstance
-        fun context(context: Context) : AppCompBuilder
+        fun context(context: Context): AppCompBuilder
     }
 
     fun getSearchComponent(): SearchComponent

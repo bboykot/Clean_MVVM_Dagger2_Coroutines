@@ -6,8 +6,8 @@ import javax.inject.Inject
 
 class SaveCityUseCase @Inject constructor(
     private val forecastRepository: ForecastRepository
-){
-    suspend fun saveCity(currentForecast: CurrentForecast?, isDefaultCity: Boolean){
+) {
+    suspend fun saveCity(currentForecast: CurrentForecast?, isDefaultCity: Boolean) {
         forecastRepository.saveCityInDatabase(currentForecast, isDefaultCity)
     }
 }

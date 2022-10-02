@@ -12,7 +12,7 @@ class DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideCitiesDatabase(context: Context): CitiesDatabase{
+    fun provideCitiesDatabase(context: Context): CitiesDatabase {
         return Room.databaseBuilder(context, CitiesDatabase::class.java, "cities").build()
     }
 }

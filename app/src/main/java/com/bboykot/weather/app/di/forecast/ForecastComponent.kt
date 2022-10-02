@@ -11,7 +11,7 @@ interface ForecastComponent {
 
 
     @Subcomponent.Builder
-    interface ForecastCompBuilder{
+    interface ForecastCompBuilder {
         @BindsInstance
         fun extras(extras: Bundle?): ForecastCompBuilder
         fun buildForecastComp(): ForecastComponent

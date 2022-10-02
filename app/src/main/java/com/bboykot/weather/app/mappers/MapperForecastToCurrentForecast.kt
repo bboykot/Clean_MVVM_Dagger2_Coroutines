@@ -6,7 +6,7 @@ import com.bboykot.weather.data.models.Forecast
 import com.bboykot.weather.domain.models.CurrentForecast
 import javax.inject.Inject
 
-class MapperForecastToCurrentForecast @Inject constructor(private val context: Context): Mapper<Forecast, CurrentForecast>() {
+class MapperForecastToCurrentForecast @Inject constructor(private val context: Context) : Mapper<Forecast, CurrentForecast>() {
     override fun map(from: Forecast): CurrentForecast {
         return CurrentForecast(
             from.id,

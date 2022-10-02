@@ -6,7 +6,7 @@ import javax.inject.Inject
 class RemoveCurrentDefaultFlagUseCase @Inject constructor(
     private val forecastRepository: ForecastRepository
 ) {
-    suspend fun removeCurrentDefaultFlag(){
+    suspend fun removeCurrentDefaultFlag() {
         forecastRepository.removeCurrentDefaultFlag()
     }
 }

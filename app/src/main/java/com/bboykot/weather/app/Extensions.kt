@@ -5,7 +5,7 @@ import com.bboykot.weather.presentation.common.MainActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun Long.getDate(pattern: String): String{
+fun Long.getDate(pattern: String): String {
     val dateTime = Date(Extensions.TIME_FACTOR * this)
     val format = SimpleDateFormat(pattern, Locale.US)
     return format.format(dateTime)
@@ -14,7 +14,7 @@ fun Long.getDate(pattern: String): String{
 fun Fragment.callMainActivity() = activity as MainActivity
 fun Fragment.callAppComponent() = (activity?.application as App).appComponent
 
-fun Fragment.handleView(){}
+fun Fragment.handleView() {}
 
 object Extensions {
     const val TIME_FACTOR = 1000

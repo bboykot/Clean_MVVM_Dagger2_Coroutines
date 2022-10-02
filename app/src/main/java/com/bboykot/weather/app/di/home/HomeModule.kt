@@ -21,6 +21,6 @@ class HomeModule {
         getDefaultCityUseCase: GetDefaultCityUseCase,
         customExceptionHandler: CustomExceptionHandler,
     ): ViewModel {
-       return HomeViewModel(getCurrentForecastUseCase, getDefaultCityUseCase, customExceptionHandler)
+        return HomeViewModel(getCurrentForecastUseCase, getDefaultCityUseCase, customExceptionHandler)
     }
 }

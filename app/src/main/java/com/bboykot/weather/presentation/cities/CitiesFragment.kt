@@ -18,7 +18,6 @@ import com.bboykot.weather.domain.models.Resource
 import com.bboykot.weather.presentation.cities.adapter.CitiesAdapter
 import com.bboykot.weather.presentation.cities.adapter.CitiesViewHolder
 import com.bboykot.weather.presentation.cities.adapter.Listener
-import com.bboykot.weather.presentation.common.MainActivity
 import com.bboykot.weather.presentation.common.ViewModelFactory
 import com.bboykot.weather.presentation.day.DayForecastFragment
 import com.bboykot.weather.presentation.week.WeekForecastFragment

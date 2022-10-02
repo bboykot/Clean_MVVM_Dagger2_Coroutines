@@ -22,7 +22,7 @@ class CustomExceptionHandler @Inject constructor(
         }
     }
 
-    companion object{
+    companion object {
         private const val ERROR_CODE_BAD_REQUEST = "400"
         private const val ERROR_CODE_NOT_FOUND = "404"
         private const val ERROR_CONNECTION = "failed to connect"

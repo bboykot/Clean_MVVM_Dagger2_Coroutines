@@ -2,9 +2,7 @@ package com.bboykot.weather.presentation.home
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -15,7 +13,6 @@ import com.bboykot.weather.app.callMainActivity
 import com.bboykot.weather.databinding.FragmentHomeBinding
 import com.bboykot.weather.domain.models.CurrentForecast
 import com.bboykot.weather.domain.models.Resource
-import com.bboykot.weather.presentation.common.MainActivity
 import com.bboykot.weather.presentation.common.ViewModelFactory
 import com.bboykot.weather.presentation.day.DayForecastFragment
 import com.bboykot.weather.presentation.week.WeekForecastFragment

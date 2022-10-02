@@ -4,9 +4,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bboykot.weather.databinding.ItemCitiesBinding
 import com.bboykot.weather.domain.models.CurrentForecast
 
-class CitiesViewHolder(private val binding: ItemCitiesBinding, private val listener: Listener): RecyclerView.ViewHolder(binding.root) {
+class CitiesViewHolder(private val binding: ItemCitiesBinding, private val listener: Listener) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(forecast: CurrentForecast){
+    fun bind(forecast: CurrentForecast) {
         binding.ivDelete.setOnClickListener { listener.onClick(forecast, ACTION_DELETE) }
         binding.btnDayForecast.setOnClickListener { listener.onClick(forecast, ACTION_SHOW_DAY_FORECAST) }
         binding.btnWeekForecast.setOnClickListener { listener.onClick(forecast, ACTION_SHOW_WEEK_FORECAST) }
@@ -18,7 +18,7 @@ class CitiesViewHolder(private val binding: ItemCitiesBinding, private val liste
         }
     }
 
-    companion object{
+    companion object {
         const val ACTION_DELETE = "action_delete"
         const val ACTION_SHOW_DAY_FORECAST = "action_show_day_forecast"
         const val ACTION_SHOW_WEEK_FORECAST = "action_show_week_forecast"

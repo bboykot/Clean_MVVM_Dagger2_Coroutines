@@ -10,6 +10,7 @@ import com.bboykot.weather.domain.usecases.DeleteCityUseCase
 import com.bboykot.weather.domain.usecases.GetCitiesUseCase
 import com.bboykot.weather.domain.usecases.GetCurrentForecastUseCase
 import com.bboykot.weather.presentation.common.CustomExceptionHandler
+import com.bboykot.weather.presentation.common.NotificationHelper
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -19,6 +20,7 @@ class CitiesViewModel(
     private val customExceptionHandler: CustomExceptionHandler,
     private val getCurrentForecastUseCase: GetCurrentForecastUseCase,
     private val deleteCityUseCase: DeleteCityUseCase,
+    private val notificationHelper: NotificationHelper,
 ) : ViewModel() {
 
     private val _result: MutableLiveData<Resource<List<CurrentForecast>>> = MutableLiveData()
@@ -43,7 +45,7 @@ class CitiesViewModel(
                 }
                 _result.value = Resource.Success(citiesForecasts)
             } else _result.value =
-                Resource.Failure("Here is no saved cities. Join Search screen? find and save city")
+                Resource.Failure(notificationHelper.noCities)
         }
     }
 

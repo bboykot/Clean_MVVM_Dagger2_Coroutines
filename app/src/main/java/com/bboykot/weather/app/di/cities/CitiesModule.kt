@@ -7,6 +7,7 @@ import com.bboykot.weather.domain.usecases.GetCitiesUseCase
 import com.bboykot.weather.domain.usecases.GetCurrentForecastUseCase
 import com.bboykot.weather.presentation.cities.CitiesViewModel
 import com.bboykot.weather.presentation.common.CustomExceptionHandler
+import com.bboykot.weather.presentation.common.NotificationHelper
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
@@ -22,12 +23,14 @@ class CitiesModule {
         customExceptionHandler: CustomExceptionHandler,
         getCurrentForecastUseCase: GetCurrentForecastUseCase,
         deleteCityUseCase: DeleteCityUseCase,
+        notificationHelper: NotificationHelper,
     ): ViewModel {
         return CitiesViewModel(
             getCitiesUseCase,
             customExceptionHandler,
             getCurrentForecastUseCase,
-            deleteCityUseCase
+            deleteCityUseCase,
+            notificationHelper
         )
     }
 }

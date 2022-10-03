@@ -5,6 +5,7 @@ import com.bboykot.weather.app.di.ViewModelKey
 import com.bboykot.weather.domain.usecases.GetCurrentForecastUseCase
 import com.bboykot.weather.domain.usecases.GetDefaultCityUseCase
 import com.bboykot.weather.presentation.common.CustomExceptionHandler
+import com.bboykot.weather.presentation.common.NotificationHelper
 import com.bboykot.weather.presentation.home.HomeViewModel
 import dagger.Module
 import dagger.Provides
@@ -20,7 +21,13 @@ class HomeModule {
         getCurrentForecastUseCase: GetCurrentForecastUseCase,
         getDefaultCityUseCase: GetDefaultCityUseCase,
         customExceptionHandler: CustomExceptionHandler,
+        notificationHelper: NotificationHelper
     ): ViewModel {
-        return HomeViewModel(getCurrentForecastUseCase, getDefaultCityUseCase, customExceptionHandler)
+        return HomeViewModel(
+            getCurrentForecastUseCase,
+            getDefaultCityUseCase,
+            customExceptionHandler,
+            notificationHelper
+        )
     }
 }

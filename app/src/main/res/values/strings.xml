@@ -14,6 +14,8 @@
     <string name="save_as_default">Save as default city</string>
     <string name="day_temperature">Day temperature:</string>
     <string name="night">night:</string>
+    <string name="no_default_city">Default city not selected. Join Search screen, find your city and save him as default</string>
+    <string name="no_cities">Here is no saved cities. Join Search screen? find and save city</string>
 
     //Exceptions
     <string name="exception_enter_city">Enter city name, then start search</string>

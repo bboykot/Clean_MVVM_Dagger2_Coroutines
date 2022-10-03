@@ -9,6 +9,7 @@ import com.bboykot.weather.domain.models.Resource
 import com.bboykot.weather.domain.usecases.GetCurrentForecastUseCase
 import com.bboykot.weather.domain.usecases.GetDefaultCityUseCase
 import com.bboykot.weather.presentation.common.CustomExceptionHandler
+import com.bboykot.weather.presentation.common.NotificationHelper
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -17,6 +18,7 @@ class HomeViewModel(
     private val getCurrentForecastUseCase: GetCurrentForecastUseCase,
     private val getDefaultCityUseCase: GetDefaultCityUseCase,
     private val customExceptionHandler: CustomExceptionHandler,
+    private val notificationHelper: NotificationHelper,
 ) : ViewModel() {
 
     private val _result = MutableLiveData<Resource<CurrentForecast>>()
@@ -41,7 +43,7 @@ class HomeViewModel(
             if (city != null) {
                 val forecast = getCurrentForecastUseCase.fetch(city)
                 _result.value = Resource.Success(forecast)
-            } else _result.value = Resource.Failure("Default city is not chosen. Join Search screen, find your city and set him as default")
+            } else _result.value = Resource.Failure(notificationHelper.noDefaultCity)
         }
     }
 }

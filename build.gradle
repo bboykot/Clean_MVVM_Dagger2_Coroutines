@@ -8,3 +8,18 @@ plugins {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext.versions = [
+        coreKtx     : "1.7.0",
+        appcompat   : "1.6.1",
+        material    : "1.6.1",
+        constraint  : "2.1.4",
+        dagger      : "2.43",
+        lifecycle   : "2.5.1",
+        fragmentKtx : "1.5.2",
+        activityKtx : "1.5.1",
+        room        : "2.4.3",
+        coroutines  : "1.6.4",
+        retrofit    : "2.9.0",
+        viewBinding : "1.5.6"
+]

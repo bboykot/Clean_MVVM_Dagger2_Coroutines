@@ -1,4 +1,4 @@
-package com.bboykot.weather.app.mappers
+package com.bboykot.weather.data.mappers
 
 import android.content.Context
 import com.bboykot.weather.R

@@ -1,4 +1,4 @@
-package com.bboykot.weather.app.mappers
+package com.bboykot.weather.data.mappers
 
 import com.bboykot.weather.data.db.CitiesEntity
 import com.bboykot.weather.domain.models.CurrentForecast

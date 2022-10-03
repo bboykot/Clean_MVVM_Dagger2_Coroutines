@@ -1,9 +1,9 @@
 package com.bboykot.weather.data.repository
 
-import com.bboykot.weather.app.mappers.MapperCurrentForecastToDb
-import com.bboykot.weather.app.mappers.MapperDayToHour
-import com.bboykot.weather.app.mappers.MapperForecastToCurrentForecast
-import com.bboykot.weather.app.mappers.MapperWeekToDaily
+import com.bboykot.weather.data.mappers.MapperCurrentForecastToDb
+import com.bboykot.weather.data.mappers.MapperDayToHour
+import com.bboykot.weather.data.mappers.MapperForecastToCurrentForecast
+import com.bboykot.weather.data.mappers.MapperWeekToDaily
 import com.bboykot.weather.data.db.CitiesDatabase
 import com.bboykot.weather.data.remote.WeatherApiService
 import com.bboykot.weather.domain.models.CurrentForecast

@@ -5,4 +5,4 @@ Clean architecture layers:
 - Domain
 - Data
 - Presentation
-![Иллюстрация к проекту](https://github.com/bboykot/myJson/blob/main/Clean%20architecture.png)
+![Clean illustration](https://github.com/bboykot/myJson/blob/main/Clean%20architecture.png)
